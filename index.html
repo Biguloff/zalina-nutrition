@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рекомендации нутрициолога | Залина Бигулова</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9A82;
+            --sage-light: #A8C5AE;
+            --sage-dark: #5A7A60;
+            --cream: #FDF8F0;
+            --cream-dark: #F5EDE0;
+            --copper: #C17744;
+            --copper-light: #E8A870;
+            --terracotta: #C4704B;
+            --charcoal: #2D3436;
+            --charcoal-light: #4A5054;
+            --warm-gray: #8E8E8E;
+            --red-soft: #D4574B;
+            --amber: #D4A04B;
+            --green-check: #5A9A60;
+            --card-bg: #FFFFFF;
+            --shadow: 0 2px 20px rgba(45, 52, 54, 0.06);
+            --shadow-hover: 0 8px 32px rgba(45, 52, 54, 0.12);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(160deg, #5A7A60 0%, #7C9A82 35%, #A8C5AE 70%, #D4E8D7 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 80%, rgba(193, 119, 68, 0.15), transparent),
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 255, 255, 0.12), transparent);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 720px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .hero-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .credential-tag {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 400;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 28px;
+            height: 28px;
+            stroke: rgba(255,255,255,0.6);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ============ NAV ============ */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(253, 248, 240, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 154, 130, 0.15);
+            padding: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sticky-nav::-webkit-scrollbar { display: none; }
+
+        .nav-inner {
+            display: flex;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.9rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--charcoal-light);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--sage-dark);
+            border-bottom-color: var(--sage);
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--charcoal);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--warm-gray);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--copper), var(--copper-light));
+            margin: 0 auto 4rem;
+            border-radius: 2px;
+        }
+
+        /* ============ SUMMARY CARDS ============ */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(124,154,130,0.08);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.8rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .icon-red { background: #FDE8E6; color: var(--red-soft); }
+        .icon-amber { background: #FDF2E0; color: var(--amber); }
+        .icon-green { background: #E6F5E8; color: var(--green-check); }
+        .icon-sage { background: #E8F0EA; color: var(--sage-dark); }
+
+        .summary-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .summary-card .value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .summary-card .range {
+            font-size: 0.75rem;
+            color: var(--warm-gray);
+        }
+
+        /* ============ ANALYSIS TABLE ============ */
+        .analysis-table-wrap {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid rgba(124,154,130,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .analysis-table-wrap h3 {
+            padding: 1.2rem 1.5rem 0.8rem;
+            font-size: 1.2rem;
+            color: var(--sage-dark);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .analysis-table th {
+            text-align: left;
+            padding: 0.7rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .analysis-table td {
+            padding: 0.75rem 1rem;
+            font-size: 0.88rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            vertical-align: middle;
+        }
+
+        .analysis-table tr:last-child td { border-bottom: none; }
+
+        .analysis-table tr:hover { background: rgba(124,154,130,0.03); }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .dot-ok { background: var(--green-check); }
+        .dot-warn { background: var(--amber); }
+        .dot-alert { background: var(--red-soft); }
+
+        .tag-status {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .tag-ok { background: #E6F5E8; color: #3D7A42; }
+        .tag-warn { background: #FDF2E0; color: #9A7A30; }
+        .tag-alert { background: #FDE8E6; color: #B5403A; }
+
+        /* ============ RECOMMENDATION CARDS ============ */
+        .rec-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(124,154,130,0.08);
+            transition: box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rec-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .rec-card.priority-high::before { background: var(--red-soft); }
+        .rec-card.priority-medium::before { background: var(--amber); }
+        .rec-card.priority-low::before { background: var(--sage); }
+
+        .rec-card:hover { box-shadow: var(--shadow-hover); }
+
+        .rec-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .rec-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .rec-header h3 {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            flex: 1;
+        }
+
+        .rec-header .priority {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .priority-h { background: #FDE8E6; color: var(--red-soft); }
+        .priority-m { background: #FDF2E0; color: var(--amber); }
+        .priority-l { background: #E8F0EA; color: var(--sage-dark); }
+
+        .rec-body {
+            padding-left: 0;
+            font-size: 0.92rem;
+            color: var(--charcoal-light);
+        }
+
+        .rec-body p {
+            margin-bottom: 0.8rem;
+        }
+
+        .rec-body strong {
+            color: var(--charcoal);
+        }
+
+        .rec-body ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .rec-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        .dose-box {
+            background: var(--cream);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--sage);
+        }
+
+        .dose-box .label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .dose-box .dose {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.6rem;
+            margin: 1rem 0;
+        }
+
+        .food-item {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.82rem;
+            text-align: center;
+            border: 1px solid rgba(124,154,130,0.1);
+        }
+
+        .food-item .emoji {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        /* ============ WEIGHT SECTION ============ */
+        .weight-plan {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .plan-step {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.8rem;
+            border: 1px solid rgba(124,154,130,0.08);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -12px;
+            left: 1.5rem;
+            width: 32px;
+            height: 32px;
+            background: var(--sage);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .plan-step h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.6rem;
+            padding-top: 0.3rem;
+        }
+
+        .plan-step p, .plan-step ul {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+        }
+
+        .plan-step ul {
+            padding-left: 1.2rem;
+        }
+
+        .plan-step li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ============ PROTOCOL TABLE ============ */
+        .protocol-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .protocol-table th {
+            background: var(--sage);
+            color: #fff;
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .protocol-table td {
+            padding: 0.85rem 1rem;
+            font-size: 0.88rem;
+            border-bottom: 1px solid var(--cream-dark);
+            vertical-align: top;
+        }
+
+        .protocol-table tr:last-child td { border-bottom: none; }
+        .protocol-table tr:hover { background: rgba(124,154,130,0.04); }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.7);
+            padding: 3rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer h3 {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer p {
+            font-size: 0.88rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--sage-light);
+            text-decoration: none;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        .footer-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .footer-contact-item {
+            font-size: 0.88rem;
+        }
+
+        .footer-disclaimer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 640px) {
+            .section { padding: 2.5rem 1rem; }
+            .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .summary-card { padding: 1rem; }
+            .summary-card .value { font-size: 1.3rem; }
+            .rec-card { padding: 1.2rem; }
+            .analysis-table th, .analysis-table td { padding: 0.5rem 0.6rem; font-size: 0.78rem; }
+            .protocol-table th, .protocol-table td { padding: 0.6rem; font-size: 0.8rem; }
+            .food-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-link { padding: 0.7rem 0.7rem; font-size: 0.7rem; }
+            .hero { min-height: 90vh; }
+        }
+
+        @media (max-width: 420px) {
+            .summary-grid { grid-template-columns: 1fr; }
+            .rec-header { flex-direction: column; gap: 0.5rem; }
+        }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============ EXPANDABLE ============ */
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .expandable-content.open {
+            max-height: 2000px;
+        }
+
+        .expand-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--sage-dark);
+            border: none;
+            background: none;
+            padding: 0.3rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .expand-toggle svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s;
+        }
+
+        .expand-toggle.open svg {
+            transform: rotate(180deg);
+        }
+
+        /* ============ CTA BANNER ============ */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #fff;
+            margin: 2rem 0;
+        }
+
+        .cta-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .cta-banner p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: var(--sage-dark);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* ============ SOURCES ============ */
+        .sources-list {
+            column-count: 2;
+            column-gap: 2rem;
+            font-size: 0.78rem;
+            color: var(--warm-gray);
+        }
+
+        .sources-list li {
+            break-inside: avoid;
+            margin-bottom: 0.3rem;
+        }
+
+        .sources-list a {
+            color: var(--sage-dark);
+            text-decoration: none;
+        }
+
+        .sources-list a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            .sources-list { column-count: 1; }
+        }
+
+        /* ============ TOOLTIP ============ */
+        .info-tip {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--sage-light);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.65rem;
+            text-align: center;
+            line-height: 16px;
+            cursor: help;
+            vertical-align: super;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .info-tip:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--charcoal);
+            color: #fff;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 400;
+            white-space: normal;
+            width: max-content;
+            max-width: 250px;
+            z-index: 999;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="top">
+    <div class="hero-content">
+        <div class="hero-badge">Персональные рекомендации</div>
+        <h1>Залина Бигулова</h1>
+        <p class="hero-subtitle">Нутрициолог-натуропат &middot; Специалист по антивозрастной медицине</p>
+        <div class="hero-credentials">
+            <span class="credential-tag">Провизор</span>
+            <span class="credential-tag">Антиэйдж менеджмент</span>
+            <span class="credential-tag">Спортивная диетология</span>
+            <span class="credential-tag">Эксперт МУНН</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.75); font-size: 0.88rem; max-width: 480px; margin: 0 auto;">
+            Анализ лабораторных данных с персональными рекомендациями по коррекции дефицитов, липидного профиля и снижению веса
+        </p>
+    </div>
+    <a href="#overview" class="scroll-indicator" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="sticky-nav">
+    <div class="nav-inner">
+        <a href="#overview" class="nav-link">Обзор</a>
+        <a href="#analyses" class="nav-link">Анализы</a>
+        <a href="#deficits" class="nav-link">Дефициты</a>
+        <a href="#cholesterol" class="nav-link">Холестерин</a>
+        <a href="#hormones" class="nav-link">Гормоны</a>
+        <a href="#weight" class="nav-link">Снижение веса</a>
+        <a href="#protocol" class="nav-link">Протокол</a>
+    </div>
+</nav>
+
+<!-- ==================== OVERVIEW ==================== -->
+<section class="section" id="overview">
+    <div class="section-header reveal">
+        <span class="section-number">01 &mdash; Обзор</span>
+        <h2>Ключевые находки</h2>
+        <p>На основании анализов крови (HELIX, февраль 2025) выявлены следующие отклонения</p>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-red">&#9888;</div>
+            <h4>Витамин D</h4>
+            <div class="value" style="color: var(--red-soft);">25.97</div>
+            <div class="range">нг/мл &middot; норма 30&ndash;100</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-red">&#9650;</div>
+            <h4>Холестерин общий</h4>
+            <div class="value" style="color: var(--red-soft);">5.92</div>
+            <div class="range">ммоль/л &middot; норма &lt;5.2</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-red">&#9650;</div>
+            <h4>ФСГ</h4>
+            <div class="value" style="color: var(--red-soft);">27.80</div>
+            <div class="range">мМЕ/мл &middot; норма 3.5&ndash;12.5</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-amber">&#9679;</div>
+            <h4>Ферритин</h4>
+            <div class="value" style="color: var(--amber);">38.4</div>
+            <div class="range">мкг/л &middot; оптимум 50&ndash;80</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-red">&#9650;</div>
+            <h4>ЛГ</h4>
+            <div class="value" style="color: var(--red-soft);">15.70</div>
+            <div class="range">мМЕ/мл &middot; норма 2.4&ndash;12.6</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-amber">&#9679;</div>
+            <h4>Йод</h4>
+            <div class="value" style="color: var(--amber);">32.47</div>
+            <div class="range">мкг/л &middot; норма 30&ndash;60</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-amber">&#9679;</div>
+            <h4>Цинк</h4>
+            <div class="value" style="color: var(--amber);">739.7</div>
+            <div class="range">мкг/л &middot; норма 700&ndash;1140</div>
+        </div>
+        <div class="summary-card reveal">
+            <div class="summary-icon icon-green">&#10003;</div>
+            <h4>В норме</h4>
+            <div class="value" style="color: var(--green-check);">21</div>
+            <div class="range">показатель из 29</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== FULL ANALYSES ==================== -->
+<section class="section" id="analyses">
+    <div class="section-header reveal">
+        <span class="section-number">02 &mdash; Полная картина</span>
+        <h2>Результаты анализов</h2>
+        <p>Все 29 показателей с расшифровкой значений и пояснениями, за что каждый отвечает</p>
+    </div>
+
+    <!-- ГОРМОНЫ -->
+    <div class="analysis-table-wrap reveal">
+        <h3>Гормональная панель</h3>
+        <div style="overflow-x: auto;">
+        <table class="analysis-table">
+            <thead>
+                <tr>
+                    <th>Показатель</th>
+                    <th>Результат</th>
+                    <th>Норма</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>ФСГ</strong> <span class="info-tip" data-tip="Фолликулостимулирующий гормон. Регулирует созревание яйцеклеток. Повышение &mdash; признак перименопаузы, яичники снижают функцию.">?</span></td>
+                    <td><strong>27.80</strong> мМЕ/мл</td>
+                    <td>3.50&ndash;12.50</td>
+                    <td><span class="tag-status tag-alert">Повышен</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ЛГ</strong> <span class="info-tip" data-tip="Лютеинизирующий гормон. Запускает овуляцию. Повышение вместе с ФСГ подтверждает приближение менопаузы.">?</span></td>
+                    <td><strong>15.70</strong> мМЕ/мл</td>
+                    <td>2.40&ndash;12.60</td>
+                    <td><span class="tag-status tag-alert">Повышен</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Эстрадиол</strong> <span class="info-tip" data-tip="Главный женский гормон. Защищает сердце, кости и кожу. Пока в норме, но при перименопаузе может колебаться.">?</span></td>
+                    <td>35.80 пг/мл</td>
+                    <td>12.40&ndash;233.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Пролактин</strong> <span class="info-tip" data-tip="Гормон гипофиза. Влияет на репродуктивную функцию и молочные железы. В норме &mdash; хорошо.">?</span></td>
+                    <td>272.00 мкМЕ/мл</td>
+                    <td>102.00&ndash;496.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Кортизол</strong> <span class="info-tip" data-tip="Гормон стресса. Показывает работу надпочечников. Утренний уровень в норме &mdash; стрессовая система не перегружена.">?</span></td>
+                    <td>343.0 нмоль/л</td>
+                    <td>166&ndash;507</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ДЭА-SO4</strong> <span class="info-tip" data-tip="Гормон молодости от надпочечников. Предшественник половых гормонов. Ближе к нижней границе &mdash; снижается с возрастом.">?</span></td>
+                    <td>76.8 мкг/дл</td>
+                    <td>35.4&ndash;256.0</td>
+                    <td><span class="tag-status tag-warn">Ниже оптимума</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ЩИТОВИДНАЯ -->
+    <div class="analysis-table-wrap reveal">
+        <h3>Щитовидная железа</h3>
+        <div style="overflow-x: auto;">
+        <table class="analysis-table">
+            <thead>
+                <tr><th>Показатель</th><th>Результат</th><th>Норма</th><th>Статус</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>ТТГ</strong> <span class="info-tip" data-tip="Тиреотропный гормон. Управляет щитовидной железой. В норме &mdash; щитовидка работает стабильно.">?</span></td>
+                    <td>0.978 мкМЕ/мл</td>
+                    <td>0.270&ndash;4.200</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Т4 свободный</strong> <span class="info-tip" data-tip="Основной гормон щитовидной железы. Регулирует обмен веществ, энергию и теплообмен.">?</span></td>
+                    <td>17.90 пмоль/л</td>
+                    <td>10.80&ndash;22.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Т3 свободный</strong> <span class="info-tip" data-tip="Активная форма гормонов щитовидки. Влияет на энергию, настроение и метаболизм. Конвертируется из Т4.">?</span></td>
+                    <td>4.17 пмоль/л</td>
+                    <td>3.10&ndash;6.80</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Анти-ТПО</strong> <span class="info-tip" data-tip="Антитела к тиреопероксидазе. Маркер аутоиммунного тиреоидита. Отрицательный &mdash; аутоиммунного процесса нет.">?</span></td>
+                    <td>&lt;9.00 МЕ/мл</td>
+                    <td>0.00&ndash;34.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Антитела к тиреоглобулину</strong> <span class="info-tip" data-tip="Ещё один маркер аутоиммунного поражения щитовидки. Низкий уровень подтверждает здоровье железы.">?</span></td>
+                    <td>19.90 МЕ/мл</td>
+                    <td>0.00&ndash;115.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ЛИПИДНЫЙ ПРОФИЛЬ -->
+    <div class="analysis-table-wrap reveal">
+        <h3>Липидный профиль</h3>
+        <div style="overflow-x: auto;">
+        <table class="analysis-table">
+            <thead>
+                <tr><th>Показатель</th><th>Результат</th><th>Норма</th><th>Статус</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Общий холестерин</strong> <span class="info-tip" data-tip="Суммарный холестерин в крови. Повышение увеличивает риск атеросклероза. Связан со снижением эстрогена в перименопаузе.">?</span></td>
+                    <td><strong>5.92</strong> ммоль/л</td>
+                    <td>&lt;5.20</td>
+                    <td><span class="tag-status tag-alert">Повышен</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Холестерин не-ЛПВП</strong> <span class="info-tip" data-tip="Весь &laquo;плохой&raquo; холестерин. Включает ЛПНП + ЛПОНП. Лучший предиктор сердечно-сосудистого риска, чем только ЛПНП.">?</span></td>
+                    <td><strong>3.97</strong> ммоль/л</td>
+                    <td>&lt;3.40</td>
+                    <td><span class="tag-status tag-alert">Повышен</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ЛПНП</strong> <span class="info-tip" data-tip="&laquo;Плохой&raquo; холестерин. Переносит холестерин к стенкам артерий. Пока в рамках целевого значения &lt;3.0.">?</span></td>
+                    <td>1.86 ммоль/л</td>
+                    <td>&lt;3.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ЛПВП</strong> <span class="info-tip" data-tip="&laquo;Хороший&raquo; холестерин. Забирает лишний холестерин из артерий. Высокий уровень &mdash; защита сосудов.">?</span></td>
+                    <td>1.95 ммоль/л</td>
+                    <td>&gt;1.20</td>
+                    <td><span class="tag-status tag-ok">Хороший</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ЛПОНП</strong> <span class="info-tip" data-tip="Липопротеины очень низкой плотности. Переносят триглицериды. В норме.">?</span></td>
+                    <td>0.43 ммоль/л</td>
+                    <td>&lt;0.80</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Триглицериды</strong> <span class="info-tip" data-tip="Жиры крови. Повышаются от избытка углеводов, сахара и алкоголя. У вас в прекрасной норме.">?</span></td>
+                    <td>0.94 ммоль/л</td>
+                    <td>&lt;1.70</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Коэф. атерогенности</strong> <span class="info-tip" data-tip="Соотношение &laquo;плохого&raquo; и &laquo;хорошего&raquo; холестерина. Чем ниже &mdash; тем лучше. У вас отлично!">?</span></td>
+                    <td>2.04</td>
+                    <td>2.20&ndash;3.50</td>
+                    <td><span class="tag-status tag-ok">Отлично</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ВИТАМИНЫ И МИНЕРАЛЫ -->
+    <div class="analysis-table-wrap reveal">
+        <h3>Витамины и минералы</h3>
+        <div style="overflow-x: auto;">
+        <table class="analysis-table">
+            <thead>
+                <tr><th>Показатель</th><th>Результат</th><th>Норма</th><th>Статус</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Витамин D</strong> <span class="info-tip" data-tip="Прогормон. Регулирует кальций, иммунитет, настроение и вес. При уровне ниже 30 &mdash; недостаточность, риск остеопороза.">?</span></td>
+                    <td><strong>25.97</strong> нг/мл</td>
+                    <td>30.00&ndash;100.00</td>
+                    <td><span class="tag-status tag-alert">Дефицит</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Ферритин</strong> <span class="info-tip" data-tip="Запас железа. При уровне ниже 50 часто усталость, выпадение волос, сухость кожи. Функциональный оптимум 50&ndash;80.">?</span></td>
+                    <td><strong>38.4</strong> мкг/л</td>
+                    <td>10.0&ndash;120.0</td>
+                    <td><span class="tag-status tag-warn">Субоптимально</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Железо сыворотки</strong> <span class="info-tip" data-tip="Текущий уровень железа в крови. Участвует в транспорте кислорода. Ближе к нижней границе.">?</span></td>
+                    <td>14.75 мкмоль/л</td>
+                    <td>6.60&ndash;26.00</td>
+                    <td><span class="tag-status tag-warn">Ниже оптимума</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Витамин B9 (фолат)</strong> <span class="info-tip" data-tip="Фолиевая кислота. Нужна для кроветворения и нервной системы. Снижает гомоцистеин. В норме.">?</span></td>
+                    <td>14.50 нмоль/л</td>
+                    <td>7.00&ndash;39.70</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Витамин B12 активный</strong> <span class="info-tip" data-tip="Активная форма B12 (холотранскобаламин). Нужен для нервов и кроветворения. Хороший уровень.">?</span></td>
+                    <td>129.00 пмоль/л</td>
+                    <td>25.10&ndash;165.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Йод</strong> <span class="info-tip" data-tip="Необходим для синтеза гормонов щитовидной железы. На нижней границе &mdash; нужно усилить поступление.">?</span></td>
+                    <td><strong>32.47</strong> мкг/л</td>
+                    <td>30.00&ndash;60.00</td>
+                    <td><span class="tag-status tag-warn">Нижняя граница</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Цинк</strong> <span class="info-tip" data-tip="Участвует в 300+ ферментных реакциях. Важен для иммунитета, кожи, волос и гормонов. Близко к нижней границе.">?</span></td>
+                    <td><strong>739.70</strong> мкг/л</td>
+                    <td>700.00&ndash;1140.00</td>
+                    <td><span class="tag-status tag-warn">Нижняя граница</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Селен</strong> <span class="info-tip" data-tip="Антиоксидант. Критичен для щитовидки и иммунитета. Работает в паре с йодом. Хороший уровень.">?</span></td>
+                    <td>122.00 мкг/л</td>
+                    <td>23.00&ndash;190.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Медь</strong> <span class="info-tip" data-tip="Участвует в кроветворении и антиоксидантной защите. Повышенная медь при низком цинке может говорить о дисбалансе.">?</span></td>
+                    <td>1109.00 мкг/л</td>
+                    <td>575.00&ndash;1175.00</td>
+                    <td><span class="tag-status tag-ok">Норма (верхняя)</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ПРОЧИЕ -->
+    <div class="analysis-table-wrap reveal">
+        <h3>Прочие маркеры</h3>
+        <div style="overflow-x: auto;">
+        <table class="analysis-table">
+            <thead>
+                <tr><th>Показатель</th><th>Результат</th><th>Норма</th><th>Статус</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Гомоцистеин</strong> <span class="info-tip" data-tip="Аминокислота-маркер сердечно-сосудистого риска. Повышается при дефиците B6, B9, B12. У вас прекрасный уровень.">?</span></td>
+                    <td>6.90 мкмоль/л</td>
+                    <td>0.00&ndash;15.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+                <tr>
+                    <td><strong>С-реактивный белок</strong> <span class="info-tip" data-tip="Маркер воспаления. Низкий уровень &mdash; системного воспаления нет. Отлично для сердечно-сосудистой системы.">?</span></td>
+                    <td>0.65 мг/л</td>
+                    <td>0.00&ndash;5.00</td>
+                    <td><span class="tag-status tag-ok">Норма</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== ДЕФИЦИТЫ ==================== -->
+<section class="section" id="deficits">
+    <div class="section-header reveal">
+        <span class="section-number">03 &mdash; Восполнение дефицитов</span>
+        <h2>Что и как восполнить</h2>
+        <p>Конкретные рекомендации по коррекции дефицитных и субоптимальных показателей</p>
+    </div>
+
+    <!-- ВИТАМИН D -->
+    <div class="rec-card priority-high reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-red">D</div>
+            <div style="flex:1">
+                <h3>Витамин D &mdash; устранить дефицит</h3>
+                <p style="font-size: 0.82rem; color: var(--warm-gray); margin: 0;">25.97 нг/мл при норме 30&ndash;100 &middot; цель: 50&ndash;60 нг/мл</p>
+            </div>
+            <span class="priority priority-h">Приоритет</span>
+        </div>
+        <div class="rec-body">
+            <p><strong>Почему это важно:</strong> витамин D &mdash; это прогормон, который регулирует усвоение кальция, работу иммунитета, настроение, обмен веществ и здоровье костей. В перименопаузе дефицит витамина D ускоряет потерю костной массы и повышает риск остеопороза.</p>
+
+            <div class="dose-box">
+                <div class="label">Рекомендуемый приём</div>
+                <div class="dose">Витамин D3 (холекальциферол) &mdash; 5 000 МЕ/день</div>
+                <p style="font-size: 0.82rem; margin-top: 0.3rem; color: var(--charcoal-light);">Курс 8&ndash;12 недель, затем контроль анализа 25(OH)D. После достижения 50+ нг/мл &mdash; поддерживающая доза 2 000 МЕ/день.</p>
+            </div>
+
+            <p><strong>Обязательные кофакторы:</strong></p>
+            <ul>
+                <li><strong>Витамин K2 (МК-7)</strong> &mdash; 100&ndash;200 мкг/день. Направляет кальций в кости, а не в сосуды</li>
+                <li><strong>Магний</strong> &mdash; 300&ndash;400 мг/день (цитрат или глицинат). Нужен для активации витамина D</li>
+            </ul>
+
+            <p><strong>Продукты-помощники:</strong></p>
+            <div class="food-grid">
+                <div class="food-item"><span class="emoji">&#127831;</span>Жирная рыба (лосось, сельдь)</div>
+                <div class="food-item"><span class="emoji">&#129370;</span>Яичный желток</div>
+                <div class="food-item"><span class="emoji">&#129472;</span>Печень трески</div>
+                <div class="food-item"><span class="emoji">&#127868;</span>Обогащённые продукты</div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--warm-gray);"><strong>Важно:</strong> принимать D3 вместе с жирной пищей для лучшего усвоения. Лучшее время &mdash; первая половина дня.</p>
+        </div>
+    </div>
+
+    <!-- ФЕРРИТИН -->
+    <div class="rec-card priority-medium reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-amber">Fe</div>
+            <div style="flex:1">
+                <h3>Ферритин и железо &mdash; довести до оптимума</h3>
+                <p style="font-size: 0.82rem; color: var(--warm-gray); margin: 0;">Ферритин 38.4 мкг/л &middot; оптимум 50&ndash;80</p>
+            </div>
+            <span class="priority priority-m">Средний</span>
+        </div>
+        <div class="rec-body">
+            <p><strong>Почему это важно:</strong> ферритин &mdash; это &laquo;склад&raquo; железа. При уровне ниже 50 мкг/л у женщин часто наблюдаются: хроническая усталость, выпадение волос, сухость кожи, ломкость ногтей, сниженный иммунитет. Восполнение ферритина до 50+ снижает усталость на 48% за 12 недель.</p>
+
+            <div class="dose-box">
+                <div class="label">Рекомендуемый приём</div>
+                <div class="dose">Хелатное железо (бисглицинат) &mdash; 25&ndash;36 мг/день</div>
+                <p style="font-size: 0.82rem; margin-top: 0.3rem; color: var(--charcoal-light);">Принимать натощак или через 2 часа после еды. Запивать водой с витамином C (50&ndash;100 мг) для улучшения усвоения. Курс 2&ndash;3 месяца с контролем ферритина.</p>
+            </div>
+
+            <p><strong>Продукты, богатые железом:</strong></p>
+            <div class="food-grid">
+                <div class="food-item"><span class="emoji">&#129385;</span>Красное мясо (говядина)</div>
+                <div class="food-item"><span class="emoji">&#127830;</span>Печень (говяжья, куриная)</div>
+                <div class="food-item"><span class="emoji">&#129424;</span>Морепродукты</div>
+                <div class="food-item"><span class="emoji">&#127811;</span>Шпинат, чечевица</div>
+                <div class="food-item"><span class="emoji">&#129372;</span>Гречка</div>
+                <div class="food-item"><span class="emoji">&#127823;</span>Гранат</div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--warm-gray);"><strong>Важно:</strong> не принимать железо одновременно с кальцием, цинком, чаем или кофе &mdash; они снижают усвоение. Разнести приём на 2&ndash;3 часа.</p>
+        </div>
+    </div>
+
+    <!-- ЙОД -->
+    <div class="rec-card priority-medium reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-amber">I</div>
+            <div style="flex:1">
+                <h3>Йод &mdash; усилить поступление</h3>
+                <p style="font-size: 0.82rem; color: var(--warm-gray); margin: 0;">32.47 мкг/л &middot; нижняя граница (норма 30&ndash;60)</p>
+            </div>
+            <span class="priority priority-m">Средний</span>
+        </div>
+        <div class="rec-body">
+            <p><strong>Почему это важно:</strong> йод &mdash; строительный материал для гормонов щитовидной железы (Т3 и Т4). Хотя щитовидка сейчас работает нормально (ТТГ 0.978), пограничный йод при длительном дефиците может замедлить метаболизм.</p>
+
+            <div class="dose-box">
+                <div class="label">Рекомендуемый приём</div>
+                <div class="dose">Йод (калия йодид) &mdash; 150&ndash;200 мкг/день</div>
+                <p style="font-size: 0.82rem; margin-top: 0.3rem; color: var(--charcoal-light);">Важно: у вас хороший уровень селена (122 мкг/л) &mdash; это кофактор йода. Можно безопасно начать приём.</p>
+            </div>
+
+            <p><strong>Пищевые источники:</strong></p>
+            <div class="food-grid">
+                <div class="food-item"><span class="emoji">&#129483;</span>Морская капуста</div>
+                <div class="food-item"><span class="emoji">&#127843;</span>Морская рыба</div>
+                <div class="food-item"><span class="emoji">&#129424;</span>Креветки, мидии</div>
+                <div class="food-item"><span class="emoji">&#129474;</span>Йодированная соль</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЦИНК -->
+    <div class="rec-card priority-medium reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-amber">Zn</div>
+            <div style="flex:1">
+                <h3>Цинк &mdash; поднять уровень</h3>
+                <p style="font-size: 0.82rem; color: var(--warm-gray); margin: 0;">739.7 мкг/л &middot; нижняя граница (норма 700&ndash;1140)</p>
+            </div>
+            <span class="priority priority-m">Средний</span>
+        </div>
+        <div class="rec-body">
+            <p><strong>Почему это важно:</strong> цинк участвует в более 300 ферментативных реакциях. Отвечает за иммунитет, состояние кожи и волос, синтез половых гормонов, инсулиночувствительность. При пограничном цинке и высокой меди (1109 мкг/л) есть дисбаланс &mdash; цинк и медь конкурируют.</p>
+
+            <div class="dose-box">
+                <div class="label">Рекомендуемый приём</div>
+                <div class="dose">Цинк (пиколинат или бисглицинат) &mdash; 15&ndash;25 мг/день</div>
+                <p style="font-size: 0.82rem; margin-top: 0.3rem; color: var(--charcoal-light);">Принимать вечером, отдельно от железа и кальция. Курс 2&ndash;3 месяца.</p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-item"><span class="emoji">&#129385;</span>Говядина</div>
+                <div class="food-item"><span class="emoji">&#129344;</span>Тыквенные семечки</div>
+                <div class="food-item"><span class="emoji">&#129372;</span>Кедровые орехи</div>
+                <div class="food-item"><span class="emoji">&#129424;</span>Устрицы</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== ХОЛЕСТЕРИН ==================== -->
+<section class="section" id="cholesterol">
+    <div class="section-header reveal">
+        <span class="section-number">04 &mdash; Липидный профиль</span>
+        <h2>Снижение холестерина</h2>
+        <p>Общий холестерин 5.92 и не-ЛПВП 3.97 повышены. Хорошая новость: ЛПВП 1.95 &mdash; отличный, коэффициент атерогенности 2.04 &mdash; ниже нормы, воспаления нет (СРБ 0.65).</p>
+    </div>
+
+    <div class="rec-card priority-high reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-red">&#9825;</div>
+            <div style="flex:1">
+                <h3>Почему холестерин повысился?</h3>
+            </div>
+        </div>
+        <div class="rec-body">
+            <p>В перименопаузе (ФСГ 27.8, ЛГ 15.7) <strong>снижается защитное действие эстрогена</strong> на липидный обмен. Эстроген помогал удерживать ЛПНП низким и ЛПВП высоким. При его снижении:</p>
+            <ul>
+                <li>Общий холестерин растёт на 10&ndash;15%</li>
+                <li>ЛПНП увеличивается</li>
+                <li>У 77% женщин 45&ndash;64 лет наблюдается повышенный холестерин</li>
+            </ul>
+            <p><strong>Это физиологически объяснимо, но требует коррекции</strong> для профилактики атеросклероза (заключение лаборатории: тип IIa гиперлипопротеинемии).</p>
+        </div>
+    </div>
+
+    <div class="rec-card priority-high reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-sage">&#9733;</div>
+            <div style="flex:1">
+                <h3>Как снизить без лекарств</h3>
+            </div>
+        </div>
+        <div class="rec-body">
+            <p><strong>1. Омега-3 жирные кислоты (EPA + DHA):</strong></p>
+            <div class="dose-box">
+                <div class="label">Рекомендуемый приём</div>
+                <div class="dose">Омега-3 &mdash; 2 000&ndash;3 000 мг EPA+DHA в день</div>
+                <p style="font-size: 0.82rem; margin-top: 0.3rem; color: var(--charcoal-light);">Снижает триглицериды на 20&ndash;30%, улучшает функцию ЛПВП, обладает противовоспалительным действием. Принимать с едой.</p>
+            </div>
+
+            <p><strong>2. Растворимая клетчатка</strong> &mdash; 10&ndash;25 г/день. Связывает холестерин в кишечнике и выводит его:</p>
+            <div class="food-grid">
+                <div class="food-item"><span class="emoji">&#127806;</span>Овсянка (бета-глюканы)</div>
+                <div class="food-item"><span class="emoji">&#127822;</span>Яблоки (пектин)</div>
+                <div class="food-item"><span class="emoji">&#129752;</span>Семена льна</div>
+                <div class="food-item"><span class="emoji">&#129372;</span>Чечевица, фасоль</div>
+                <div class="food-item"><span class="emoji">&#129382;</span>Псиллиум (подорожник)</div>
+                <div class="food-item"><span class="emoji">&#129388;</span>Авокадо</div>
+            </div>
+
+            <p><strong>3. Растительные стеролы</strong> &mdash; 2 г/день. Блокируют всасывание холестерина. Снижают ЛПНП на 6&ndash;15%.</p>
+
+            <p><strong>4. Полезные жиры &mdash; заменить, а не убрать:</strong></p>
+            <ul>
+                <li>Оливковое масло extra virgin &mdash; 2&ndash;3 ст. ложки в день</li>
+                <li>Орехи (грецкие, миндаль) &mdash; 30 г/день</li>
+                <li>Авокадо &mdash; половинка в день</li>
+            </ul>
+
+            <p><strong>5. Исключить или сильно ограничить:</strong></p>
+            <ul>
+                <li>Трансжиры (маргарин, фаст-фуд, выпечка промышленная)</li>
+                <li>Рафинированный сахар и белую муку</li>
+                <li>Избыток насыщенных жиров (жирное мясо, сливочное масло &gt;10 г/день)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== ГОРМОНЫ ==================== -->
+<section class="section" id="hormones">
+    <div class="section-header reveal">
+        <span class="section-number">05 &mdash; Гормональный фон</span>
+        <h2>Перименопауза: что происходит</h2>
+        <p>ФСГ 27.8 и ЛГ 15.7 подтверждают начало перименопаузального перехода. Это не болезнь, а новый этап</p>
+    </div>
+
+    <div class="rec-card priority-low reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-sage">&#9792;</div>
+            <div style="flex:1">
+                <h3>Что это значит простыми словами</h3>
+            </div>
+        </div>
+        <div class="rec-body">
+            <p><strong>ФСГ (27.8 при норме до 12.5)</strong> &mdash; гипофиз &laquo;кричит&raquo; яичникам работать активнее, но они постепенно снижают выработку эстрогена. Чем выше ФСГ &mdash; тем ближе менопауза.</p>
+            <p><strong>ЛГ (15.7 при норме до 12.6)</strong> &mdash; повышается параллельно с ФСГ, подтверждая переходный период.</p>
+            <p><strong>Хорошие новости:</strong> эстрадиол пока в рабочем диапазоне (35.8), щитовидка работает прекрасно, кортизол в норме, воспаления нет.</p>
+        </div>
+    </div>
+
+    <div class="rec-card priority-low reveal">
+        <div class="rec-header">
+            <div class="rec-icon icon-sage">&#9880;</div>
+            <div style="flex:1">
+                <h3>Нутритивная поддержка при перименопаузе</h3>
+            </div>
+        </div>
+        <div class="rec-body">
+            <p><strong>Фитоэстрогены</strong> &mdash; мягко поддерживают гормональный баланс:</p>
+            <ul>
+                <li><strong>Семена льна</strong> &mdash; 1&ndash;2 ст. ложки молотых в день (лигнаны)</li>
+                <li><strong>Изофлавоны сои</strong> &mdash; тофу, эдамамэ, мисо 2&ndash;3 раза в неделю</li>
+                <li><strong>Красный клевер</strong> &mdash; как чай или добавка</li>
+            </ul>
+
+            <p><strong>Адаптогены</strong> для поддержки надпочечников (ДЭА-SO4 на нижней границе):</p>
+            <ul>
+                <li><strong>Ашваганда</strong> &mdash; 300&ndash;600 мг/день (снижает кортизол, поддерживает ДЭА)</li>
+                <li><strong>Родиола розовая</strong> &mdash; 200&ndash;400 мг/день (энергия и стрессоустойчивость)</li>
+            </ul>
+
+            <p><strong>Кальций + магний</strong> &mdash; для профилактики остеопороза в перименопаузе:</p>
+            <ul>
+                <li>Кальций из продуктов &mdash; 1000&ndash;1200 мг/день (кунжут, зелень, молочные)</li>
+                <li>Магний &mdash; 300&ndash;400 мг/день (уже входит в протокол с витамином D)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== СНИЖЕНИЕ ВЕСА ==================== -->
+<section class="section" id="weight">
+    <div class="section-header reveal">
+        <span class="section-number">06 &mdash; Снижение веса</span>
+        <h2>Как снизить вес безопасно</h2>
+        <p>В перименопаузе метаболизм замедляется, меняется распределение жира, растёт инсулинорезистентность. Но снизить вес реально &mdash; нужен системный подход</p>
+    </div>
+
+    <div class="weight-plan">
+        <div class="plan-step reveal">
+            <div class="step-number">1</div>
+            <h4>Белок &mdash; основа каждого приёма пищи</h4>
+            <ul>
+                <li><strong>1.2&ndash;1.5 г белка на 1 кг веса</strong> &mdash; минимум для сохранения мышц</li>
+                <li>В каждом приёме: мясо, рыба, яйца, творог или бобовые</li>
+                <li>Белок усиливает термогенез (сжигает калории при переваривании)</li>
+                <li>Даёт сытость на 3&ndash;4 часа &mdash; меньше перекусов</li>
+            </ul>
+        </div>
+
+        <div class="plan-step reveal">
+            <div class="step-number">2</div>
+            <h4>Средиземноморский стиль питания</h4>
+            <p>Доказанно лучший подход для женщин в перименопаузе. Снижает вес, холестерин и воспаление одновременно:</p>
+            <ul>
+                <li><strong>Овощи</strong> &mdash; 400&ndash;500 г в день (половина тарелки)</li>
+                <li><strong>Жирная рыба</strong> &mdash; 3&ndash;4 раза в неделю</li>
+                <li><strong>Оливковое масло</strong> &mdash; основной жир</li>
+                <li><strong>Цельнозерновые</strong> &mdash; бурый рис, гречка, овсянка</li>
+                <li><strong>Орехи</strong> &mdash; горсть в день</li>
+                <li><strong>Ограничить:</strong> сахар, белый хлеб, колбасы, полуфабрикаты</li>
+            </ul>
+        </div>
+
+        <div class="plan-step reveal">
+            <div class="step-number">3</div>
+            <h4>Режим питания &mdash; 3 приёма, без перекусов</h4>
+            <ul>
+                <li><strong>Завтрак</strong> (до 10:00) &mdash; белок + жиры + клетчатка</li>
+                <li><strong>Обед</strong> (13:00&ndash;14:00) &mdash; самый объёмный приём</li>
+                <li><strong>Ужин</strong> (до 19:00) &mdash; лёгкий, белок + овощи</li>
+                <li>Пищевое окно 10&ndash;12 часов (мягкое интервальное голодание)</li>
+                <li><strong>Вода</strong> &mdash; 30 мл на 1 кг веса в день</li>
+            </ul>
+        </div>
+
+        <div class="plan-step reveal">
+            <div class="step-number">4</div>
+            <h4>Физическая активность</h4>
+            <ul>
+                <li><strong>Силовые тренировки</strong> &mdash; 2&ndash;3 раза в неделю (сохранение мышечной массы = быстрый метаболизм)</li>
+                <li><strong>Ходьба</strong> &mdash; 8 000&ndash;10 000 шагов в день</li>
+                <li><strong>Кардио</strong> &mdash; 2&ndash;3 раза в неделю по 30&ndash;40 минут (плавание, велосипед)</li>
+                <li>Избегать чрезмерных нагрузок &mdash; они повышают кортизол и запасание жира</li>
+            </ul>
+        </div>
+
+        <div class="plan-step reveal">
+            <div class="step-number">5</div>
+            <h4>Сон и стресс &mdash; скрытые факторы веса</h4>
+            <ul>
+                <li><strong>Сон 7&ndash;8 часов</strong> &mdash; недосып повышает грелин (гормон голода) и снижает лептин (гормон сытости)</li>
+                <li><strong>Управление стрессом</strong> &mdash; повышенный кортизол запасает жир на животе</li>
+                <li>Практики: дыхательные техники, прогулки на природе, йога, медитация</li>
+                <li><strong>Магний перед сном</strong> &mdash; улучшает качество сна и снижает тревожность</li>
+            </ul>
+        </div>
+
+        <div class="plan-step reveal">
+            <div class="step-number">6</div>
+            <h4>Безопасный темп снижения веса</h4>
+            <ul>
+                <li><strong>2&ndash;4 кг в месяц</strong> &mdash; физиологичный и безопасный темп</li>
+                <li>Дефицит калорий: не более 300&ndash;500 ккал от нормы (резкое ограничение замедляет метаболизм)</li>
+                <li>Контролировать <strong>объёмы</strong>, а не только вес (мышцы тяжелее жира)</li>
+                <li>Не голодать &mdash; это сигнал организму запасать жир</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== ПРОТОКОЛ ==================== -->
+<section class="section" id="protocol">
+    <div class="section-header reveal">
+        <span class="section-number">07 &mdash; Протокол приёма</span>
+        <h2>Сводная таблица</h2>
+        <p>Что принимать, когда и в какой дозе. Разнесено по времени для оптимального усвоения</p>
+    </div>
+
+    <div class="reveal" style="overflow-x: auto;">
+    <table class="protocol-table">
+        <thead>
+            <tr>
+                <th>Добавка</th>
+                <th>Дозировка</th>
+                <th>Когда</th>
+                <th>Курс</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Витамин D3</strong></td>
+                <td>5 000 МЕ</td>
+                <td>Утро, с жирной пищей</td>
+                <td>8&ndash;12 нед., затем 2 000 МЕ</td>
+            </tr>
+            <tr>
+                <td><strong>Витамин K2 (МК-7)</strong></td>
+                <td>200 мкг</td>
+                <td>Утро, вместе с D3</td>
+                <td>Постоянно с D3</td>
+            </tr>
+            <tr>
+                <td><strong>Магний (цитрат)</strong></td>
+                <td>300&ndash;400 мг</td>
+                <td>Вечер, перед сном</td>
+                <td>Постоянно</td>
+            </tr>
+            <tr>
+                <td><strong>Омега-3 (EPA+DHA)</strong></td>
+                <td>2 000&ndash;3 000 мг</td>
+                <td>С едой (обед/ужин)</td>
+                <td>Постоянно</td>
+            </tr>
+            <tr>
+                <td><strong>Железо (бисглицинат)</strong></td>
+                <td>25&ndash;36 мг</td>
+                <td>Утро натощак + вит. C</td>
+                <td>2&ndash;3 мес., контроль</td>
+            </tr>
+            <tr>
+                <td><strong>Цинк (пиколинат)</strong></td>
+                <td>15&ndash;25 мг</td>
+                <td>Вечер, отдельно от Fe</td>
+                <td>2&ndash;3 мес.</td>
+            </tr>
+            <tr>
+                <td><strong>Йод (калия йодид)</strong></td>
+                <td>150&ndash;200 мкг</td>
+                <td>Утро</td>
+                <td>3 мес., контроль</td>
+            </tr>
+            <tr>
+                <td><strong>Семена льна (молотые)</strong></td>
+                <td>1&ndash;2 ст. л.</td>
+                <td>С едой (каша, салат)</td>
+                <td>Постоянно</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="cta-banner reveal" style="margin-top: 2.5rem;">
+        <h3>Запись на консультацию</h3>
+        <p>Для индивидуального подбора дозировок и контроля динамики &mdash; свяжитесь с Залиной</p>
+        <a href="https://taplink.cc/zalina_bigulova" class="cta-button" target="_blank" rel="noopener">WhatsApp +7 918 822 7716</a>
+    </div>
+
+    <!-- ИСТОЧНИКИ -->
+    <div class="reveal" style="margin-top: 3rem;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 1rem;">Источники</h3>
+        <ol class="sources-list">
+            <li><a href="https://docma.ru/vitamin-d-rekomendatsii-priem-diety-riski/" target="_blank">Docma &mdash; Витамин D в 2025: новые рекомендации</a></li>
+            <li><a href="https://gemotest.ru/info/spravochnik/analizy/vitamin-d/" target="_blank">Гемотест &mdash; Витамин D: как повысить уровень</a></li>
+            <li><a href="https://avenumed.ru/poleznaya-informatsiya/vitamin-d/" target="_blank">АвеньюМед &mdash; Дефицит витамина D: симптомы и лечение</a></li>
+            <li><a href="https://farmakopeika.ru/articles/1270560" target="_blank">Фармакопейка &mdash; Дозы витамина D</a></li>
+            <li><a href="https://apteka.ru/blog/articles/lekarstva_i_dobavki/kak-pravilno-prinimat-vitamin-d/" target="_blank">Apteka.ru &mdash; Как правильно принимать витамин D3</a></li>
+            <li><a href="https://olidetrim.com/rus/post/rekomendovannaya-sutocnaya-norma-potrebleniya-vitamina-d3/" target="_blank">Олидетрим &mdash; Суточная норма витамина D3</a></li>
+            <li><a href="https://lactoflorene.eu/blog/menopauza-i-holesterin/" target="_blank">Лактофлорене &mdash; Менопауза и холестерин</a></li>
+            <li><a href="https://www.labquest.ru/terek/articles/norma-kholesterina-v-krovi-u-zhenshchin-posle-40/" target="_blank">LabQuest &mdash; Норма холестерина у женщин после 40</a></li>
+            <li><a href="https://gnicpm.ru/articles/terapevt-news/gormonalnye-sdvigi-vo-vremya-menopauzy-napryamuyu-svyazany-s-uhudsheniem-sostoyaniya-zdorovya-serdcza-i-sosudov.html" target="_blank">НМИЦ ТПМ &mdash; Гормональные сдвиги и сердце</a></li>
+            <li><a href="https://www.synex.ru/blog/povyshennyy-kholesterin-kak-snizit/" target="_blank">СИНЭКС &mdash; Как снизить холестерин</a></li>
+            <li><a href="https://doktor-a.com/aktualno/povyshennyy-kholesterin-u-zhenshchin-prichiny-i-lechenie/" target="_blank">Доктор А &mdash; Повышенный холестерин у женщин</a></li>
+            <li><a href="https://primekraft.ru/articles/kak-pokhudet-posle-40-50-let-luchshie-diety-dlya-zhenshchin/" target="_blank">Prime Kraft &mdash; Диеты для женщин после 40-50</a></li>
+            <li><a href="https://fitstars.ru/blog/healthy-lifestyle/weight-loss-after-fourty" target="_blank">FitStars &mdash; Похудеть после 40</a></li>
+            <li><a href="https://www.grazia.ru/beauty/kak-pohudet-v-45-ne-navrediv-zdorovyu-soblyudayte-eti-pravila/" target="_blank">Grazia &mdash; Похудеть в 45+ без вреда</a></li>
+            <li><a href="https://stroynee.pro/articles/osobennosti-pokhudeniya-posle-45-let/" target="_blank">Стройнее &mdash; Похудение после 45</a></li>
+            <li><a href="https://sanatoriy-gorniy.ru/blog/kak-pokhudet-zhenshchine-posle-40-let/" target="_blank">Санаторий Горный &mdash; Похудение после 40</a></li>
+            <li><a href="https://medgorod-clinic.ru/stati/zhelezodefitsit-i-khronicheskaya-ustalost-u-zhenshchin-35-45--kak-podnyat-ferritin-bezopasno/" target="_blank">МедГород &mdash; Как поднять ферритин безопасно</a></li>
+            <li><a href="https://www.smclinic.ru/simptomy/nizkiy-ferritin/" target="_blank">СМ-Клиника &mdash; Низкий ферритин</a></li>
+            <li><a href="https://www.cnmt.ru/sovetyi-ot-vrachej-cznmt/chto-takoe-ferritin-i-pochemu-on-vazhen" target="_blank">ЦНМТ &mdash; Что такое ферритин</a></li>
+            <li><a href="https://superiron.ru/ferritin/" target="_blank">SuperIron &mdash; Ферритин: база знаний</a></li>
+            <li><a href="https://ogni.clinic/articles/tpost/cvl139clv1-latentnii-defitsit-zheleza-variant-normi" target="_blank">Огни Клиник &mdash; Латентный дефицит железа</a></li>
+            <li><a href="https://www.gmsclinic.ru/blog/kaltsiy-zhelezo-yod-i-drugie-elementy" target="_blank">GMS Clinic &mdash; Кальций, железо, йод</a></li>
+            <li><a href="https://mckonsilium.ru/company/sovety/produkty-bogatye-yodom/" target="_blank">МК Консилиум &mdash; Продукты, богатые йодом</a></li>
+            <li><a href="https://inner.su/services/sovmestimost-vitaminov-i-mineralov-7-tablits-sutochnye-normy-i-produkty/" target="_blank">Inner &mdash; Совместимость витаминов и минералов</a></li>
+            <li><a href="https://helenkornilova.com/scheme/vospolnenie-deficitov/" target="_blank">Елена Корнилова &mdash; Восполнение кофакторов при йоде</a></li>
+            <li><a href="https://www.ahajournals.org/doi/10.1161/JAHA.123.029512" target="_blank">AHA &mdash; Omega-3 and Dyslipidemia Meta-Analysis</a></li>
+            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12628397/" target="_blank">PMC &mdash; N-3 Fatty Acids and Cardiovascular Health</a></li>
+            <li><a href="https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/" target="_blank">NIH &mdash; Omega-3 Fatty Acids Fact Sheet</a></li>
+            <li><a href="https://www.mayoclinicproceedings.org/article/S0025-6196(20)30985-X/fulltext" target="_blank">Mayo Clinic &mdash; Omega-3 Dosage and CV Outcomes</a></li>
+            <li><a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000709" target="_blank">AHA Circulation &mdash; Omega-3 for Hypertriglyceridemia</a></li>
+            <li><a href="https://www.probl-endojournals.ru/jour/article/view/11629?locale=ru_RU" target="_blank">Проблемы Эндокринологии &mdash; Эстроген и липиды</a></li>
+            <li><a href="https://www.reaviz.com/about/articles/ferritin-norma-u-zhenshchiny/" target="_blank">Реавиз &mdash; Ферритин: норма у женщин</a></li>
+            <li><a href="https://gorzdrav.org/blog/uroven-ferritina-v-krovi-norma-i-otklonenija/" target="_blank">Горздрав &mdash; Уровень ферритина в крови</a></li>
+            <li><a href="https://alfa-clinic.com/blog/pochemu-zhenshhine-posle-35-let-trudno-poxudet/" target="_blank">Альфа Клиник &mdash; Похудеть после 35</a></li>
+            <li><a href="https://www.jv.ru/news/pohudenie-dla-zensin-posle-45-let-video" target="_blank">ЖВ &mdash; Похудение для женщин после 45</a></li>
+        </ol>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <h3>Залина Бигулова</h3>
+    <p>Нутрициолог-натуропат &middot; Специалист по антивозрастной медицине</p>
+    <div class="footer-contacts">
+        <span class="footer-contact-item"><a href="https://wa.me/79188227716">WhatsApp: +7 918 822 7716</a></span>
+        <span class="footer-contact-item"><a href="mailto:b-zalina@mail.ru">b-zalina@mail.ru</a></span>
+        <span class="footer-contact-item"><a href="https://taplink.cc/zalina_bigulova">taplink.cc/zalina_bigulova</a></span>
+    </div>
+    <div class="footer-disclaimer">
+        Данные рекомендации носят информационный характер и не являются медицинским диагнозом или назначением лечения. Перед приёмом добавок проконсультируйтесь с врачом. Интерпретация результатов анализов проводится специалистом в совокупности с клиническими данными.
+    </div>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, i * 60);
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Active nav on scroll
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const top = section.offsetTop - 80;
+        if (window.scrollY >= top) {
+            current = section.getAttribute('id');
+        }
+    });
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
+</body>
+</html>
