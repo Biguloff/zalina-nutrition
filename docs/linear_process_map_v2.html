@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бизнес-процессы v2.0 — Автоматизированная система</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF6F0;
+  --cream-dark: #F0E8DA;
+  --sage: #5A7A60;
+  --sage-light: #7A9A80;
+  --sage-pale: #EDF4EE;
+  --copper: #C17744;
+  --copper-pale: #FFF3EA;
+  --gold: #A08860;
+  --gold-pale: #F9F3E8;
+  --charcoal: #2D3436;
+  --brown: #3D3225;
+  --brown-mid: #5A4A35;
+  --brown-light: #8A7A60;
+  --white: #FFFFFF;
+  --border: #D4C4A8;
+  --border-light: #ECE5D8;
+  --red: #C0392B;
+  --red-pale: #FDECEA;
+  --blue: #2C6FAC;
+  --blue-pale: #EBF3FC;
+  --purple: #6B4E9B;
+  --purple-pale: #F3EFF8;
+  --purple-mid: #8B6EBB;
+  --teal: #1A8A6E;
+  --teal-pale: #E8F6F1;
+  --client-bg: #F0F7FF;
+  --bot-bg: #F3EFF8;
+  --human-bg: #EDF4EE;
+  --data-bg: #FFF8F0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito Sans', -apple-system, sans-serif;
+  color: var(--charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ─── */
+.site-header {
+  position: sticky;
+  top: 0; z-index: 100;
+  background: rgba(250,246,240,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.header-logo {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 3px 12px rgba(107,78,155,0.25);
+}
+
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 700; color: var(--brown);
+}
+
+.header-sub {
+  font-size: 10px; color: var(--brown-light);
+  letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+}
+
+.header-nav { display: flex; gap: 3px; flex-wrap: wrap; }
+
+.nav-pill {
+  padding: 5px 12px; border-radius: 16px;
+  font-size: 11px; font-weight: 600;
+  color: var(--brown-mid); text-decoration: none;
+  transition: all 0.2s; border: none; background: none;
+  font-family: inherit; cursor: pointer;
+}
+
+.nav-pill:hover { background: var(--purple); color: white; }
+
+/* ─── LEGEND ─── */
+.legend-bar {
+  max-width: 1400px; margin: 0 auto;
+  padding: 16px 24px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--brown-mid);
+}
+
+.legend-swatch {
+  width: 28px; height: 16px; border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ─── MAIN ─── */
+.main { max-width: 1400px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ─── PHASE HEADER ─── */
+.phase-bar {
+  margin-top: 40px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 14px;
+  scroll-margin-top: 70px;
+}
+
+.phase-num {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; color: white;
+  flex-shrink: 0;
+}
+
+.phase-info { flex: 1; }
+
+.phase-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 700; color: var(--brown);
+}
+
+.phase-subtitle {
+  font-size: 13px; color: var(--brown-light);
+}
+
+/* Phase colors */
+.phase-acquire .phase-bar { background: var(--sage-pale); }
+.phase-acquire .phase-num { background: var(--sage); }
+.phase-onboard .phase-bar { background: var(--copper-pale); }
+.phase-onboard .phase-num { background: var(--copper); }
+.phase-program .phase-bar { background: var(--purple-pale); }
+.phase-program .phase-num { background: var(--purple); }
+.phase-daily .phase-bar { background: var(--gold-pale); }
+.phase-daily .phase-num { background: var(--gold); }
+.phase-close .phase-bar { background: var(--blue-pale); }
+.phase-close .phase-num { background: var(--blue); }
+
+/* ─── THREE-COLUMN ROW ─── */
+.process-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* Step number on the left */
+.process-row::before {
+  content: attr(data-step);
+  position: absolute;
+  left: -28px; top: 14px;
+  font-size: 11px; font-weight: 700;
+  color: var(--brown-light);
+}
+
+.col-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 0 0 6px;
+  border-bottom: 2px solid var(--border);
+}
+
+.col-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  text-align: center; padding: 6px;
+  border-radius: 8px;
+}
+
+.col-label-client { color: var(--blue); background: var(--client-bg); }
+.col-label-bot { color: var(--purple); background: var(--bot-bg); }
+.col-label-human { color: var(--sage); background: var(--human-bg); }
+
+/* ─── CELL CARD ─── */
+.cell {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  border: 1px solid var(--border-light);
+  position: relative;
+  transition: all 0.2s;
+}
+
+.cell:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.cell-client { background: var(--client-bg); border-left: 3px solid var(--blue); }
+.cell-bot { background: var(--bot-bg); border-left: 3px solid var(--purple); }
+.cell-human { background: var(--human-bg); border-left: 3px solid var(--sage); }
+.cell-data { background: var(--data-bg); border-left: 3px solid var(--gold); }
+.cell-empty { background: transparent; border: 1px dashed var(--border-light); opacity: 0.4; }
+
+.cell-title {
+  font-weight: 700; font-size: 13px; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.cell-icon {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; color: white; flex-shrink: 0;
+}
+
+.icon-client { background: var(--blue); }
+.icon-bot { background: var(--purple); }
+.icon-human { background: var(--sage); }
+.icon-data { background: var(--gold); }
+
+.cell ul { list-style: none; padding: 0; margin: 4px 0 0; }
+.cell li { padding: 1px 0 1px 14px; position: relative; font-size: 12px; color: var(--brown-mid); }
+.cell li::before { content: '›'; position: absolute; left: 2px; color: var(--brown-light); font-weight: 700; }
+
+/* Tags */
+.cell-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+
+.tag {
+  padding: 2px 8px; border-radius: 12px;
+  font-size: 10px; font-weight: 600;
+}
+
+.tag-tool { background: var(--teal-pale); color: var(--teal); }
+.tag-db { background: var(--gold-pale); color: var(--gold); }
+.tag-new { background: var(--purple-pale); color: var(--purple); }
+.tag-save { background: var(--sage-pale); color: var(--sage); }
+
+/* ─── DATA STORE INDICATOR ─── */
+.data-store {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.store-card {
+  background: var(--data-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.store-card span {
+  color: var(--brown-mid);
+  font-weight: 400;
+}
+
+/* ─── LOOP INDICATOR ─── */
+.loop-bar {
+  margin-top: 14px;
+  padding: 10px 16px;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  background: rgba(160,136,96,0.04);
+  display: flex; align-items: center; gap: 10px;
+}
+
+.loop-icon {
+  font-size: 20px; color: var(--gold);
+}
+
+.loop-text {
+  font-size: 13px; font-weight: 600; color: var(--gold);
+}
+
+.loop-desc {
+  font-size: 12px; color: var(--brown-light); font-weight: 400;
+}
+
+/* ─── COMPARISON BOX ─── */
+.compare {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.compare-card {
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--border-light);
+}
+
+.compare-old { background: var(--red-pale); }
+.compare-new { background: var(--sage-pale); }
+
+.compare-label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.compare-old .compare-label { color: var(--red); }
+.compare-new .compare-label { color: var(--sage); }
+
+.compare-card ul { list-style: none; padding: 0; }
+.compare-card li { padding: 2px 0; font-size: 12px; color: var(--brown-mid); }
+
+/* ─── CLIENT CARD PREVIEW ─── */
+.client-card-preview {
+  margin-top: 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.cc-header {
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--sage), var(--sage-light));
+  color: white;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.cc-avatar {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700;
+}
+
+.cc-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; }
+.cc-status { font-size: 11px; opacity: 0.8; }
+
+.cc-body { padding: 16px 20px; }
+
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cc-stat {
+  text-align: center;
+  padding: 10px 6px;
+  background: var(--cream);
+  border-radius: 10px;
+}
+
+.cc-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 700;
+}
+
+.cc-stat-label {
+  font-size: 10px; color: var(--brown-light);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.cc-tabs {
+  display: flex; gap: 4px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.cc-tab {
+  padding: 5px 12px; border-radius: 6px;
+  font-size: 11px; font-weight: 600;
+  color: var(--brown-light);
+}
+
+.cc-tab.active { background: var(--sage-pale); color: var(--sage); }
+
+.cc-section {
+  margin-bottom: 12px;
+}
+
+.cc-section-title {
+  font-size: 11px; font-weight: 700; color: var(--brown-light);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.cc-row {
+  display: flex; justify-content: space-between;
+  padding: 4px 0;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cc-row:last-child { border-bottom: none; }
+.cc-label { color: var(--brown-light); }
+.cc-value { font-weight: 600; color: var(--brown); }
+.cc-value.good { color: var(--sage); }
+.cc-value.warn { color: var(--copper); }
+.cc-value.bad { color: var(--red); }
+
+/* ─── DB SCHEMA PREVIEW ─── */
+.db-schema {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.db-table {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 11px;
+}
+
+.db-table-header {
+  padding: 8px 12px;
+  font-weight: 700;
+  color: white;
+  font-size: 12px;
+}
+
+.db-table-body { padding: 6px 12px; }
+
+.db-field {
+  padding: 2px 0;
+  display: flex; justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--brown-mid);
+}
+
+.db-field:last-child { border-bottom: none; }
+.db-type { color: var(--brown-light); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+
+/* Table colors */
+.db-clients .db-table-header { background: var(--blue); }
+.db-measurements .db-table-header { background: var(--teal); }
+.db-labs .db-table-header { background: var(--copper); }
+.db-supplements .db-table-header { background: var(--sage); }
+.db-appointments .db-table-header { background: var(--purple); }
+.db-food .db-table-header { background: var(--gold); }
+.db-daily .db-table-header { background: var(--red); }
+.db-payments .db-table-header { background: var(--brown-mid); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .process-row, .col-header { grid-template-columns: 1fr; }
+  .cc-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare { grid-template-columns: 1fr; }
+  .db-schema { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .db-schema { grid-template-columns: 1fr; }
+  .header-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">⚡</div>
+      <div>
+        <div class="header-title">Процессы v2.0 — Автоматизация</div>
+        <div class="header-sub">Залина Бигулова</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a class="nav-pill" href="#acquire">Привлечение</a>
+      <a class="nav-pill" href="#onboard">Онбординг</a>
+      <a class="nav-pill" href="#program">Старт</a>
+      <a class="nav-pill" href="#daily">Ежедневно</a>
+      <a class="nav-pill" href="#close">Завершение</a>
+      <a class="nav-pill" href="#card">Карточка</a>
+      <a class="nav-pill" href="#db">База данных</a>
+    </nav>
+  </div>
+</header>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--client-bg);border-color:var(--blue)"></div>Клиент</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--bot-bg);border-color:var(--purple)"></div>ИИ / Бот</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--human-bg);border-color:var(--sage)"></div>Залина / Мария</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--data-bg);border-color:var(--gold)"></div>Хранилище данных</div>
+</div>
+
+<div class="main">
+
+<!-- ═══════ BEFORE / AFTER ═══════ -->
+<div class="compare" style="margin-top:24px">
+  <div class="compare-card compare-old">
+    <div class="compare-label">❌ Было (v1.0)</div>
+    <ul>
+      <li>1 200 ручных сообщений/мес на клиента</li>
+      <li>85% шаблонных сообщений отправляет Мария вручную</li>
+      <li>4 чата WhatsApp → путаница куда писать</li>
+      <li>Вес/замеры приходят текстом — нет графиков</li>
+      <li>Нет CRM, нет карточки клиента</li>
+      <li>Анализы в чате — теряются среди сообщений</li>
+      <li>72× «ждём остальных» — нет трекинга</li>
+      <li>Оплата: ручная генерация ссылки</li>
+    </ul>
+  </div>
+  <div class="compare-card compare-new">
+    <div class="compare-label">✅ Стало (v2.0)</div>
+    <ul>
+      <li>Telegram-бот: автоматизация 90% рассылок</li>
+      <li>Единый бот вместо 4 чатов — разделы внутри</li>
+      <li>Автосбор веса, замеров, ответов → таблица + графики</li>
+      <li>CRM в Notion/Supabase с карточкой клиента</li>
+      <li>Яндекс.Диск: структурированные папки по клиентам</li>
+      <li>Автотрекинг вовлечённости + умные напоминания</li>
+      <li>ИИ: предварительный разбор анализов и фото еды</li>
+      <li>Тинькофф API: автоссылка оплаты + статус</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════ ФАЗА 1: ПРИВЛЕЧЕНИЕ ═══════ -->
+<div class="phase-acquire" id="acquire">
+  <div class="phase-bar">
+    <div class="phase-num">1</div>
+    <div class="phase-info">
+      <div class="phase-name">Привлечение и квалификация</div>
+      <div class="phase-subtitle">Запрос → Анкета → Оплата</div>
+    </div>
+  </div>
+
+  <div class="col-header">
+    <div class="col-label col-label-client">👤 Клиент</div>
+    <div class="col-label col-label-bot">🤖 ИИ / Бот</div>
+    <div class="col-label col-label-human">👩‍⚕️ Залина / Мария</div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="process-row" data-step="1">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">1</span>Пишет в Telegram</div>
+      «Хочу консультацию» или «Хочу на программу»
+      <div class="cell-tags"><span class="tag tag-tool">Telegram</span></div>
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Бот-маршрутизатор</div>
+      <ul>
+        <li>Автоприветствие через 30 сек</li>
+        <li>2-3 квалиф. вопроса (кнопки)</li>
+        <li>Определение: консультация / программа</li>
+        <li>Автоотправка ссылки на анкету</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ clients</span></div>
+    </div>
+    <div class="cell cell-empty">
+      <div style="text-align:center;color:var(--brown-light);font-size:12px;padding:12px 0">
+        Не участвует.<br>Бот обрабатывает.
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="process-row" data-step="2">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">2</span>Заполняет анкету</div>
+      Яндекс.Формы: анамнез, жалобы, цели, пищевые привычки
+      <div class="cell-tags"><span class="tag tag-tool">Яндекс.Формы</span></div>
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Webhook + автоматизация</div>
+      <ul>
+        <li>Webhook из Яндекс.Форм → создание карточки</li>
+        <li>Данные анкеты → БД (clients + medical_history)</li>
+        <li>Автоуведомление Залине: «Новая анкета!»</li>
+        <li>Клиенту: «Анкета получена ✓»</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ clients, medical_history</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="process-row" data-step="3">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">3</span>Выбирает тариф</div>
+      <ul>
+        <li><strong>Консультация:</strong> 5 500₽ / 7 000₽</li>
+        <li><strong>Программа:</strong> после бесплатной диагностики выбирает 1/1.5/2/3 мес</li>
+      </ul>
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Тарифы + бронирование</div>
+      <ul>
+        <li>Бот показывает карточки тарифов (кнопки)</li>
+        <li>Программа → автобронирование бесплатной диагностики через Cal.com</li>
+        <li>Автогенерация Zoom-ссылки</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-tool">Cal.com</span><span class="tag tag-tool">Zoom API</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Бесплатная диагностика</div>
+      <ul>
+        <li>Только для программы сопровождения</li>
+        <li>Zoom 30 мин: рассказ о программе</li>
+        <li>Помощь с выбором тарифа</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-tool">Zoom</span></div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="process-row" data-step="4">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">4</span>Оплачивает</div>
+      Переходит по ссылке, оплачивает картой
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Тинькофф API</div>
+      <ul>
+        <li>Автогенерация ссылки оплаты</li>
+        <li>Webhook подтверждения → статус «Оплачен»</li>
+        <li>Клиенту: «Оплата получена ✓»</li>
+        <li>Напоминание через 24ч если не оплатил</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ payments</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">📱</span>Уведомление</div>
+      Залина получает push: «Клиент X оплатил. Готовьте чекап.»
+    </div>
+  </div>
+
+  <div class="store-card">💾 <strong>Сохранено:</strong> <span>clients (карточка) → medical_history (анкета) → payments (оплата) → Яндекс.Диск/01_Клиенты/Фамилия_Имя/ (создана папка)</span></div>
+</div>
+
+<!-- ═══════ ФАЗА 2: ОНБОРДИНГ ═══════ -->
+<div class="phase-onboard" id="onboard">
+  <div class="phase-bar">
+    <div class="phase-num">2</div>
+    <div class="phase-info">
+      <div class="phase-name">Онбординг: анализы → консультация</div>
+      <div class="phase-subtitle">Чекап → сдача → разбор → Zoom 2ч → материалы</div>
+    </div>
+  </div>
+
+  <div class="col-header">
+    <div class="col-label col-label-client">👤 Клиент</div>
+    <div class="col-label col-label-bot">🤖 ИИ / Бот</div>
+    <div class="col-label col-label-human">👩‍⚕️ Залина</div>
+  </div>
+
+  <div class="process-row" data-step="5">
+    <div class="cell cell-empty"></div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>ИИ-помощник по чекапу</div>
+      <ul>
+        <li>На основе анкеты → черновик списка анализов</li>
+        <li>Шаблонный набор + индивид. дополнения</li>
+        <li>Генерация PDF-чекапа</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Утверждение чекапа</div>
+      <ul>
+        <li>Ревью черновика ИИ → правки</li>
+        <li>Подтверждение → отправка клиенту</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="6">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">6</span>Сдаёт анализы</div>
+      Сдаёт в лабораторию, присылает фото/PDF в Telegram-бот
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Приём анализов</div>
+      <ul>
+        <li>Бот принимает фото/PDF</li>
+        <li>OCR: распознавание текста с фото</li>
+        <li>Автозаполнение таблицы маркеров</li>
+        <li>Сохранение файла в Яндекс.Диск</li>
+        <li>Напоминания если не сдал через 3/5/7 дней</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ lab_results, lab_markers</span><span class="tag tag-save">→ Я.Диск/02_Анализы</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+
+  <div class="process-row" data-step="7">
+    <div class="cell cell-empty"></div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>ИИ-предварительный разбор</div>
+      <ul>
+        <li>Сравнение с референсами и оптимальными</li>
+        <li>Маркировка отклонений: ↓ / ✓ / ↑</li>
+        <li>Черновик комментариев</li>
+        <li>Черновик схемы БАДов</li>
+        <li>Всё в dashboard для Залины</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ — экономия 60-70% времени</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Финальный разбор</div>
+      <ul>
+        <li>Ревью ИИ-черновика</li>
+        <li>Корректировка комментариев</li>
+        <li>Утверждение схемы БАДов</li>
+        <li>Было: 2-5 дней → Стало: 2-4 часа</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-db">→ lab_markers, supplement_protocols</span></div>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="8">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">8</span>Zoom-консультация</div>
+      Подключается по ссылке, 1.5–2 часа
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Автоматизация встречи</div>
+      <ul>
+        <li>Напоминание за 48ч + 2ч</li>
+        <li>Автозапись Zoom</li>
+        <li>ИИ-саммари встречи</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Проводит консультацию</div>
+      Полный разбор анализов + рекомендации + (программа: объяснение методики)
+    </div>
+  </div>
+
+  <div class="process-row" data-step="9">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">📦</span>Получает пакет</div>
+      Всё в одном месте — в боте или портале
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Авторассылка материалов</div>
+      <ul>
+        <li>Триггер: «консультация завершена»</li>
+        <li>→ Яндекс.Таблица с анализами</li>
+        <li>→ PDF рекомендаций (автогенерация)</li>
+        <li>→ Схема БАДов</li>
+        <li>→ Ссылки на покупку БАДов</li>
+        <li>Одна кнопка вместо 5-6 сообщений</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-save">→ Я.Диск/03_Рекомендации</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+
+  <div class="store-card">💾 <strong>Сохранено:</strong> <span>lab_results + lab_markers (анализы) → supplement_protocols + items (БАДы) → appointments (встреча + заметки) → Я.Диск (PDF, файлы анализов)</span></div>
+</div>
+
+<!-- ═══════ ФАЗА 3: СТАРТ ПРОГРАММЫ ═══════ -->
+<div class="phase-program" id="program">
+  <div class="phase-bar">
+    <div class="phase-num">3</div>
+    <div class="phase-info">
+      <div class="phase-name">Старт программы «Интенсив»</div>
+      <div class="phase-subtitle">Единый Telegram-бот вместо 4 чатов</div>
+    </div>
+  </div>
+
+  <div class="col-header">
+    <div class="col-label col-label-client">👤 Клиент</div>
+    <div class="col-label col-label-bot">🤖 ИИ / Бот</div>
+    <div class="col-label col-label-human">👩‍⚕️ Залина</div>
+  </div>
+
+  <div class="process-row" data-step="10">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">10</span>Подключается к боту</div>
+      Один бот с разделами (меню кнопок):
+      <ul>
+        <li>📋 План дня</li>
+        <li>📸 Отправить фото еды</li>
+        <li>⚖️ Ввести вес</li>
+        <li>💊 Мои БАДы</li>
+        <li>📊 Мой прогресс</li>
+        <li>❓ Задать вопрос</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">ВМЕСТО 4 ЧАТОВ</span></div>
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Автосоздание программы</div>
+      <ul>
+        <li>Генерация 30-дневного календаря</li>
+        <li>Тип каждого дня: этап / перерыв</li>
+        <li>Загрузка шаблонов из базы</li>
+        <li>Привязка к клиенту</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ program_calendar</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Индивидуальные настройки</div>
+      <ul>
+        <li>Калораж и пропорции БЖУ для клиента</li>
+        <li>Корректировка плана если нужно</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="11">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">11</span>Вечер Дня 0</div>
+      Получает вводные материалы, список покупок, первое задание
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Автоотправка в 21:00</div>
+      <ul>
+        <li>Вводный пакет (шаблон)</li>
+        <li>Список продуктов на неделю</li>
+        <li>Список покупок (весы, блендер, сантиметр)</li>
+        <li>Задание: психотехника перед сном</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">100% АВТОМАТИЧЕСКИ</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+
+  <div class="process-row" data-step="12">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">12</span>Утро Дня 1: точка А</div>
+      Вводит через бот: вес, талия, живот, бёдра
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Автосбор замеров</div>
+      <ul>
+        <li>Бот запрашивает числа кнопками</li>
+        <li>Парсинг → запись в measurements</li>
+        <li>Генерация «Карточка Точка А»</li>
+        <li>Уведомление Залине с данными</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-db">→ measurements</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+</div>
+
+<!-- ═══════ ФАЗА 4: ЕЖЕДНЕВНЫЙ ЦИКЛ ═══════ -->
+<div class="phase-daily" id="daily">
+  <div class="phase-bar">
+    <div class="phase-num">4</div>
+    <div class="phase-info">
+      <div class="phase-name">Ежедневный цикл (×30 дней)</div>
+      <div class="phase-subtitle">Основная операционка — теперь на 90% автоматическая</div>
+    </div>
+  </div>
+
+  <div class="loop-bar">
+    <div class="loop-icon">↻</div>
+    <div>
+      <div class="loop-text">Повторяется каждый день 28-30 дней</div>
+      <div class="loop-desc">Было: 30-50 ручных сообщений/день от Марии → Стало: 0-3 сообщения от Залины</div>
+    </div>
+  </div>
+
+  <div class="col-header">
+    <div class="col-label col-label-client">👤 Клиент</div>
+    <div class="col-label col-label-bot">🤖 ИИ / Бот</div>
+    <div class="col-label col-label-human">👩‍⚕️ Залина</div>
+  </div>
+
+  <div class="process-row" data-step="A">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">🌙</span>Вечер — отвечает</div>
+      Жмёт кнопки в боте:
+      <ul>
+        <li>Без мучного? Да ✓ / Нет ✗</li>
+        <li>Вода: 1.5 л</li>
+        <li>Питание сбалансировано? Да</li>
+        <li>Физнагрузка? Йога 30 мин</li>
+        <li>Психотехника на: Конфеты</li>
+      </ul>
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Вечер 20:00 — автоопрос</div>
+      <ul>
+        <li>Cron 20:00 → вечерние вопросы (кнопки)</li>
+        <li>Автосбор ответов → daily_tracking</li>
+        <li>21:00 → план на завтра (из calendar)</li>
+        <li>Тип дня: «Завтра — день этапа 🔥»</li>
+        <li>Если нет ответа через 2ч → напоминание</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">100% АВТО</span><span class="tag tag-db">→ daily_tracking</span></div>
+    </div>
+    <div class="cell cell-empty">
+      <div style="text-align:center;color:var(--brown-light);font-size:12px;padding:12px 0">
+        Не участвует
+      </div>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="B">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">☀️</span>Утро — вес</div>
+      Вводит утренний вес через бот (одно число)
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Утро 08:00 — приветствие</div>
+      <ul>
+        <li>Утреннее сообщение + чек-лист привычек</li>
+        <li>Запрос веса</li>
+        <li>Парсинг → measurements/daily_tracking</li>
+        <li>Мини-график: «-1.3 кг за неделю 📉»</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">100% АВТО</span><span class="tag tag-db">→ measurements</span></div>
+    </div>
+    <div class="cell cell-empty"></div>
+  </div>
+
+  <div class="process-row" data-step="C">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">📸</span>Фото завтрака/обеда/ужина</div>
+      Отправляет фото в бот (кнопка «📸 Фото еды»)
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>ИИ Vision — анализ фото</div>
+      <ul>
+        <li>Распознавание продуктов на фото</li>
+        <li>Предварительная оценка: БЖУ, зелень, баланс</li>
+        <li>Черновик отзыва: «✅ Баланс ОК» или «⚠️ Добавьте белок»</li>
+        <li>Фото → Яндекс.Диск/05_Дневник</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ — ИИ</span><span class="tag tag-db">→ food_diary</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Проверка (при необходимости)</div>
+      <ul>
+        <li>Получает dashboard: все фото + ИИ-оценки</li>
+        <li>Подтверждает или правит черновик</li>
+        <li>Персональный комментарий для сложных случаев</li>
+        <li>Было: проверять всё → Стало: только флаги ⚠️</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="D">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">❓</span>Задаёт вопрос</div>
+      Через раздел «❓ Задать вопрос» в боте
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Трекинг вовлечённости</div>
+      <ul>
+        <li>Автотрекинг: кто ответил / не ответил</li>
+        <li>Через 3ч без фото → мягкое напоминание</li>
+        <li>Через 6ч → уведомление Залине</li>
+        <li>Еженедельный отчёт вовлечённости</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ — РЕШАЕТ БОЛЬ «ЖДЁМ ОСТАЛЬНЫХ»</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Отвечает на вопросы</div>
+      <ul>
+        <li>Только экспертные медицинские вопросы</li>
+        <li>FAQ → бот отвечает автоматически</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Weekly -->
+  <div class="loop-bar" style="border-color:var(--blue);background:rgba(44,111,172,0.04)">
+    <div class="loop-icon" style="color:var(--blue)">📊</div>
+    <div>
+      <div class="loop-text" style="color:var(--blue)">Конец недели — итоги (×4 за месяц)</div>
+      <div class="loop-desc">Бот собирает замеры → генерирует отчёт → Залина проводит Zoom 30-40 мин</div>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="E">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">📏</span>Замеры конца недели</div>
+      Вводит через бот: вес, талия, живот, бёдра
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Генерация отчёта</div>
+      <ul>
+        <li>Автосбор замеров → measurements</li>
+        <li>Сравнение с точкой А и прошлой неделей</li>
+        <li>Генерация отчёта с графиками</li>
+        <li>Расчёт: «-2.1 кг, талия -3 см»</li>
+        <li>Отправка Залине перед Zoom</li>
+        <li>Cal.com: автобронирование слота</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ measurements</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Zoom 30-40 мин</div>
+      <ul>
+        <li>Готовый дашборд перед звонком</li>
+        <li>Обсуждение результатов</li>
+        <li>ИИ-саммари → заметки</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-db">→ appointments</span></div>
+    </div>
+  </div>
+
+  <div class="store-card">💾 <strong>Ежедневно:</strong> <span>daily_tracking (ответы) → measurements (вес) → food_diary (фото + оценка) → Я.Диск/05_Дневник (фото)</span></div>
+</div>
+
+<!-- ═══════ ФАЗА 5: ЗАВЕРШЕНИЕ ═══════ -->
+<div class="phase-close" id="close">
+  <div class="phase-bar">
+    <div class="phase-num">5</div>
+    <div class="phase-info">
+      <div class="phase-name">Завершение и ретеншн</div>
+      <div class="phase-subtitle">Итоги → повторные анализы → продление / архив</div>
+    </div>
+  </div>
+
+  <div class="col-header">
+    <div class="col-label col-label-client">👤 Клиент</div>
+    <div class="col-label col-label-bot">🤖 ИИ / Бот</div>
+    <div class="col-label col-label-human">👩‍⚕️ Залина</div>
+  </div>
+
+  <div class="process-row" data-step="13">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">13</span>Итоговый опрос</div>
+      Отвечает на опрос через бот (кнопки)
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Автоматический итог</div>
+      <ul>
+        <li>Опрос по 4 блокам: внешность, самочувствие, привычки, удовлетворённость</li>
+        <li>Автоагрегация → NPS-скор</li>
+        <li>Генерация итогового отчёта с графиками</li>
+        <li>Сравнение «точка А → точка Б»</li>
+        <li>Запрос отзыва для соцсетей</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Итоговый Zoom</div>
+      Подведение итогов с готовым дашбордом
+    </div>
+  </div>
+
+  <div class="process-row" data-step="14">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">14</span>Повторные анализы</div>
+      Сдаёт контрольные анализы, присылает в бот
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>ИИ: сравнение до/после</div>
+      <ul>
+        <li>Автопарсинг повторных анализов</li>
+        <li>Сравнение с первичными: ↑↓ по каждому маркеру</li>
+        <li>Визуализация динамики</li>
+        <li>Черновик корректировки БАДов</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-db">→ lab_results v2</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">👩‍⚕️</span>Разбор динамики</div>
+      <ul>
+        <li>Zoom: комментарии по изменениям</li>
+        <li>Утверждение новой схемы БАДов</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="process-row" data-step="15">
+    <div class="cell cell-client">
+      <div class="cell-title"><span class="cell-icon icon-client">15</span>Решение: продлить?</div>
+      Получает предложение продления с ценой
+    </div>
+    <div class="cell cell-bot">
+      <div class="cell-title"><span class="cell-icon icon-bot">⚡</span>Авторетеншн</div>
+      <ul>
+        <li>Автопредложение продления (кнопки)</li>
+        <li>Если да → новая ссылка оплаты</li>
+        <li>Если нет → перевод в «Чат поддержки»</li>
+        <li>Через 30 дней: «Как ваши результаты?»</li>
+        <li>Через 90 дней: чек-ин напоминание</li>
+      </ul>
+      <div class="cell-tags"><span class="tag tag-new">НОВОЕ</span></div>
+    </div>
+    <div class="cell cell-human">
+      <div class="cell-title"><span class="cell-icon icon-human">📁</span>Архивация</div>
+      <ul>
+        <li>Если не продлевает → статус «Завершён»</li>
+        <li>Папка → 02_Архив/2026/Фамилия_Имя</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ КАРТОЧКА КЛИЕНТА ═══════ -->
+<div id="card" style="scroll-margin-top:70px">
+  <div style="margin-top:48px;margin-bottom:16px">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--brown)">Карточка клиента — как это выглядит</div>
+    <div style="font-size:14px;color:var(--brown-light)">Интерфейс Notion / веб-портала</div>
+  </div>
+
+  <div class="client-card-preview">
+    <div class="cc-header">
+      <div class="cc-avatar">АС</div>
+      <div>
+        <div class="cc-name">Алехина Стояна</div>
+        <div class="cc-status">● Активна — Неделя 3 / Семидневный этап</div>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-grid">
+        <div class="cc-stat">
+          <div class="cc-stat-num" style="color:var(--sage)">-5.3</div>
+          <div class="cc-stat-label">кг за месяц</div>
+        </div>
+        <div class="cc-stat">
+          <div class="cc-stat-num" style="color:var(--copper)">-5 см</div>
+          <div class="cc-stat-label">талия</div>
+        </div>
+        <div class="cc-stat">
+          <div class="cc-stat-num" style="color:var(--purple)">87%</div>
+          <div class="cc-stat-label">вовлечённость</div>
+        </div>
+        <div class="cc-stat">
+          <div class="cc-stat-num" style="color:var(--blue)">4/5</div>
+          <div class="cc-stat-label">zoom встречи</div>
+        </div>
+      </div>
+
+      <div class="cc-tabs">
+        <div class="cc-tab active">Обзор</div>
+        <div class="cc-tab">Анализы</div>
+        <div class="cc-tab">БАДы</div>
+        <div class="cc-tab">Дневник</div>
+        <div class="cc-tab">Замеры</div>
+        <div class="cc-tab">Оплаты</div>
+        <div class="cc-tab">Встречи</div>
+      </div>
+
+      <div class="cc-section">
+        <div class="cc-section-title">Основная информация</div>
+        <div class="cc-row"><span class="cc-label">Телефон</span><span class="cc-value">+7-999-123-45-67</span></div>
+        <div class="cc-row"><span class="cc-label">Telegram</span><span class="cc-value">@stoyana_a</span></div>
+        <div class="cc-row"><span class="cc-label">Дата рождения</span><span class="cc-value">15.05.1990 (36 лет)</span></div>
+        <div class="cc-row"><span class="cc-label">Город</span><span class="cc-value">Владикавказ</span></div>
+        <div class="cc-row"><span class="cc-label">Источник</span><span class="cc-value">Instagram</span></div>
+      </div>
+
+      <div class="cc-section">
+        <div class="cc-section-title">Программа</div>
+        <div class="cc-row"><span class="cc-label">Тариф</span><span class="cc-value">Сопровождение 1 мес</span></div>
+        <div class="cc-row"><span class="cc-label">Период</span><span class="cc-value">20.03 — 20.04.2026</span></div>
+        <div class="cc-row"><span class="cc-label">Этап</span><span class="cc-value">Неделя 3 / Семидневный</span></div>
+        <div class="cc-row"><span class="cc-label">След. Zoom</span><span class="cc-value">03.04.2026, 18:00</span></div>
+        <div class="cc-row"><span class="cc-label">Оплата</span><span class="cc-value warn">7 500₽ из 15 000₽ (50%)</span></div>
+      </div>
+
+      <div class="cc-section">
+        <div class="cc-section-title">Ключевые маркеры анализов</div>
+        <div class="cc-row"><span class="cc-label">Ферритин</span><span class="cc-value bad">12 нг/мл (↓ дефицит)</span></div>
+        <div class="cc-row"><span class="cc-label">Витамин D</span><span class="cc-value warn">18 нг/мл (↓ недостаточность)</span></div>
+        <div class="cc-row"><span class="cc-label">ТТГ</span><span class="cc-value good">1.8 мМЕ/л (✓ оптимально)</span></div>
+        <div class="cc-row"><span class="cc-label">Холестерин</span><span class="cc-value warn">5.8 ммоль/л (↑ погранично)</span></div>
+      </div>
+
+      <div class="cc-section">
+        <div class="cc-section-title">Активный протокол БАДов</div>
+        <div class="cc-row"><span class="cc-label">Витамин D3</span><span class="cc-value">5000 МЕ утром с едой</span></div>
+        <div class="cc-row"><span class="cc-label">Хелатное железо</span><span class="cc-value">36 мг вечером натощак</span></div>
+        <div class="cc-row"><span class="cc-label">Омега-3</span><span class="cc-value">2000 мг с обедом</span></div>
+        <div class="cc-row"><span class="cc-label">Магний цитрат</span><span class="cc-value">400 мг перед сном</span></div>
+      </div>
+
+      <div class="cc-section">
+        <div class="cc-section-title">Папка в облаке</div>
+        <div class="cc-row"><span class="cc-value" style="font-family:'JetBrains Mono',monospace;font-size:11px">Яндекс.Диск / 01_Клиенты / Алехина_Стояна /</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ БАЗА ДАННЫХ ═══════ -->
+<div id="db" style="scroll-margin-top:70px">
+  <div style="margin-top:48px;margin-bottom:16px">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--brown)">Схема базы данных</div>
+    <div style="font-size:14px;color:var(--brown-light)">8 связанных таблиц — Notion / Supabase / PostgreSQL</div>
+  </div>
+
+  <div class="db-schema">
+    <div class="db-table db-clients">
+      <div class="db-table-header">👤 clients</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>id</span><span class="db-type">UUID PK</span></div>
+        <div class="db-field"><span>last_name</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>first_name</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>phone</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>telegram</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>status</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>service_type</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>program_stage</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>cloud_folder</span><span class="db-type">url</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-measurements">
+      <div class="db-table-header">📏 measurements</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>date</span><span class="db-type">date</span></div>
+        <div class="db-field"><span>weight_kg</span><span class="db-type">number</span></div>
+        <div class="db-field"><span>waist_cm</span><span class="db-type">number</span></div>
+        <div class="db-field"><span>hip_cm</span><span class="db-type">number</span></div>
+        <div class="db-field"><span>belly_cm</span><span class="db-type">number</span></div>
+        <div class="db-field"><span>bmi</span><span class="db-type">calc</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-labs">
+      <div class="db-table-header">🔬 lab_results + markers</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>test_date</span><span class="db-type">date</span></div>
+        <div class="db-field"><span>test_type</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>marker_name</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>value / unit</span><span class="db-type">num/text</span></div>
+        <div class="db-field"><span>ref_range</span><span class="db-type">num..num</span></div>
+        <div class="db-field"><span>status</span><span class="db-type">↓/✓/↑</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-supplements">
+      <div class="db-table-header">💊 supplement_protocols</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>version</span><span class="db-type">int</span></div>
+        <div class="db-field"><span>supplement</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>dosage</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>timing</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>purchase_url</span><span class="db-type">url</span></div>
+        <div class="db-field"><span>status</span><span class="db-type">enum</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-appointments">
+      <div class="db-table-header">📅 appointments</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>date</span><span class="db-type">datetime</span></div>
+        <div class="db-field"><span>type</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>duration_min</span><span class="db-type">int</span></div>
+        <div class="db-field"><span>zoom_link</span><span class="db-type">url</span></div>
+        <div class="db-field"><span>notes</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>next_steps</span><span class="db-type">text</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-food">
+      <div class="db-table-header">🍽 food_diary</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>date</span><span class="db-type">date</span></div>
+        <div class="db-field"><span>meal_type</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>photo_url</span><span class="db-type">url</span></div>
+        <div class="db-field"><span>description</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>ai_assessment</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>feedback</span><span class="db-type">text</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-daily">
+      <div class="db-table-header">📊 daily_tracking</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>date</span><span class="db-type">date</span></div>
+        <div class="db-field"><span>no_sugar</span><span class="db-type">bool</span></div>
+        <div class="db-field"><span>water_liters</span><span class="db-type">num</span></div>
+        <div class="db-field"><span>exercise</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>psychotechnique</span><span class="db-type">int</span></div>
+        <div class="db-field"><span>day_type</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>mood</span><span class="db-type">1-10</span></div>
+      </div>
+    </div>
+
+    <div class="db-table db-payments">
+      <div class="db-table-header">💳 payments</div>
+      <div class="db-table-body">
+        <div class="db-field"><span>client_id</span><span class="db-type">→ clients</span></div>
+        <div class="db-field"><span>date</span><span class="db-type">date</span></div>
+        <div class="db-field"><span>amount</span><span class="db-type">₽ num</span></div>
+        <div class="db-field"><span>method</span><span class="db-type">enum</span></div>
+        <div class="db-field"><span>description</span><span class="db-type">text</span></div>
+        <div class="db-field"><span>status</span><span class="db-type">enum</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+</body>
+</html>

@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Линейная карта бизнес-процессов — Залина Бигулова</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF6F0;
+  --cream-dark: #F0E8DA;
+  --sage: #5A7A60;
+  --sage-light: #7A9A80;
+  --sage-pale: #EDF4EE;
+  --copper: #C17744;
+  --copper-light: #D4956A;
+  --copper-pale: #FFF3EA;
+  --gold: #A08860;
+  --gold-light: #C4AD85;
+  --gold-pale: #F9F3E8;
+  --charcoal: #2D3436;
+  --brown: #3D3225;
+  --brown-mid: #5A4A35;
+  --brown-light: #8A7A60;
+  --white: #FFFFFF;
+  --border: #D4C4A8;
+  --border-light: #ECE5D8;
+  --red: #C0392B;
+  --red-pale: #FDECEA;
+  --blue: #2C6FAC;
+  --blue-pale: #EBF3FC;
+  --purple: #6B4E9B;
+  --purple-pale: #F3EFF8;
+  --teal: #1A8A6E;
+  --teal-pale: #E8F6F1;
+  --shadow-sm: 0 1px 3px rgba(90,74,53,0.06);
+  --shadow-md: 0 4px 16px rgba(90,74,53,0.08);
+  --shadow-lg: 0 8px 32px rgba(90,74,53,0.1);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito Sans', -apple-system, sans-serif;
+  color: var(--charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ─── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,246,240,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--sage), var(--sage-light));
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 3px 12px rgba(90,122,96,0.25);
+}
+
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.header-sub {
+  font-size: 11px;
+  color: var(--brown-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-pill {
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brown-mid);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.nav-pill:hover, .nav-pill.active {
+  background: var(--sage);
+  color: white;
+}
+
+/* ─── HERO ─── */
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 32px;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--brown-light);
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.stats-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 16px 22px;
+  box-shadow: var(--shadow-sm);
+  min-width: 140px;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--sage);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--brown-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── PHASE NAVIGATION ─── */
+.phase-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.phase-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+  color: var(--brown-mid);
+}
+
+.phase-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.phase-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── MAIN TIMELINE ─── */
+.timeline-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  position: relative;
+}
+
+/* Vertical line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 55px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--sage) 0%, var(--sage) 14%,
+    var(--copper) 14%, var(--copper) 28%,
+    var(--purple) 28%, var(--purple) 50%,
+    var(--gold) 50%, var(--gold) 65%,
+    var(--red) 65%, var(--red) 78%,
+    var(--blue) 78%, var(--blue) 90%,
+    var(--teal) 90%
+  );
+  border-radius: 1px;
+}
+
+/* ─── PHASE HEADER ─── */
+.phase-header {
+  position: relative;
+  margin: 48px 0 24px;
+  padding-left: 88px;
+  scroll-margin-top: 80px;
+}
+
+.phase-header:first-child { margin-top: 0; }
+
+.phase-icon {
+  position: absolute;
+  left: 36px;
+  top: 0;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+  color: white;
+  font-weight: 700;
+}
+
+.phase-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.2;
+}
+
+.phase-desc {
+  font-size: 14px;
+  color: var(--brown-light);
+  margin-top: 4px;
+}
+
+/* ─── STEP CARD ─── */
+.step {
+  position: relative;
+  margin: 12px 0;
+  padding-left: 88px;
+}
+
+.step-dot {
+  position: absolute;
+  left: 48px;
+  top: 16px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
+}
+
+.step-connector {
+  position: absolute;
+  left: 56px;
+  top: 32px;
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+}
+
+.step-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.step-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border);
+  transform: translateX(4px);
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.step-num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  margin-right: 10px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brown);
+  display: inline;
+}
+
+.step-body {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--brown-mid);
+  line-height: 1.7;
+}
+
+.step-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.step-body li {
+  padding: 2px 0;
+  padding-left: 18px;
+  position: relative;
+}
+
+.step-body li::before {
+  content: '›';
+  position: absolute;
+  left: 4px;
+  color: var(--brown-light);
+  font-weight: 700;
+}
+
+/* ─── TAGS / META ─── */
+.step-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tag-who {
+  background: var(--blue-pale);
+  color: var(--blue);
+}
+
+.tag-tool {
+  background: var(--teal-pale);
+  color: var(--teal);
+}
+
+.tag-time {
+  background: var(--gold-pale);
+  color: var(--gold);
+}
+
+.tag-pain {
+  background: var(--red-pale);
+  color: var(--red);
+}
+
+.tag-ai {
+  background: var(--purple-pale);
+  color: var(--purple);
+}
+
+/* ─── AUTOMATION SIDEBAR ─── */
+.auto-hint {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--purple);
+  background: rgba(107,78,155,0.03);
+  font-size: 12px;
+  color: var(--purple);
+  line-height: 1.6;
+}
+
+.auto-hint strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+/* ─── DATA FROM CHATS ─── */
+.real-data {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--cream);
+  font-size: 12px;
+  color: var(--brown-mid);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+.real-data-label {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--brown-light);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ─── PHASE COLORS ─── */
+.phase-acquire .phase-icon, .phase-acquire .step-num-badge { background: var(--sage); }
+.phase-acquire .phase-label { color: var(--sage); }
+.phase-acquire .step-dot { background: var(--sage); }
+.phase-acquire .step-card::before { background: var(--sage); }
+
+.phase-onboard .phase-icon, .phase-onboard .step-num-badge { background: var(--copper); }
+.phase-onboard .phase-label { color: var(--copper); }
+.phase-onboard .step-dot { background: var(--copper); }
+.phase-onboard .step-card::before { background: var(--copper); }
+
+.phase-program .phase-icon, .phase-program .step-num-badge { background: var(--purple); }
+.phase-program .phase-label { color: var(--purple); }
+.phase-program .step-dot { background: var(--purple); }
+.phase-program .step-card::before { background: var(--purple); }
+
+.phase-daily .phase-icon, .phase-daily .step-num-badge { background: var(--gold); }
+.phase-daily .phase-label { color: var(--gold); }
+.phase-daily .step-dot { background: var(--gold); }
+.phase-daily .step-card::before { background: var(--gold); }
+
+.phase-method .phase-icon, .phase-method .step-num-badge { background: var(--red); }
+.phase-method .phase-label { color: var(--red); }
+.phase-method .step-dot { background: var(--red); }
+.phase-method .step-card::before { background: var(--red); }
+
+.phase-close .phase-icon, .phase-close .step-num-badge { background: var(--blue); }
+.phase-close .phase-label { color: var(--blue); }
+.phase-close .step-dot { background: var(--blue); }
+.phase-close .step-card::before { background: var(--blue); }
+
+.phase-infra .phase-icon, .phase-infra .step-num-badge { background: var(--teal); }
+.phase-infra .phase-label { color: var(--teal); }
+.phase-infra .step-dot { background: var(--teal); }
+.phase-infra .step-card::before { background: var(--teal); }
+
+/* ─── LOOP INDICATOR ─── */
+.loop-card {
+  border: 2px dashed var(--border);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(160,136,96,0.03) 8px,
+    rgba(160,136,96,0.03) 16px
+  );
+  border-radius: var(--radius);
+  padding: 14px 22px;
+  margin: 8px 0;
+  margin-left: 88px;
+  position: relative;
+}
+
+.loop-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.loop-text {
+  font-size: 13px;
+  color: var(--brown-mid);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .timeline-container::before { left: 24px; }
+  .phase-header { padding-left: 56px; }
+  .phase-icon { left: 5px; }
+  .step { padding-left: 56px; }
+  .step-dot { left: 17px; }
+  .step-connector { left: 25px; }
+  .loop-card { margin-left: 56px; }
+  .hero h1 { font-size: 28px; }
+  .stats-row { gap: 12px; }
+  .header-nav { display: none; }
+}
+
+/* ─── PRINT ─── */
+@media print {
+  .site-header { position: static; }
+  .step-card:hover { transform: none; }
+  .phase-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">🌿</div>
+      <div>
+        <div class="header-title">Линейная карта процессов</div>
+        <div class="header-sub">Залина Бигулова &middot; Нутрициолог</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a class="nav-pill" href="#acquire">Привлечение</a>
+      <a class="nav-pill" href="#onboard">Онбординг</a>
+      <a class="nav-pill" href="#program">Программа</a>
+      <a class="nav-pill" href="#daily">Ежедневно</a>
+      <a class="nav-pill" href="#method">Методика</a>
+      <a class="nav-pill" href="#close">Завершение</a>
+      <a class="nav-pill" href="#infra">Инфраструктура</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Путь клиента от первого контакта<br>до завершения программы</h1>
+  <p class="hero-desc">
+    Полная линейная карта бизнес-процессов, восстановленная из описания Залины и реальных данных чата «Марафон Стройности» (3 187 сообщений, 61 день, 12 клиентов).
+    Каждый шаг размечен: кто выполняет, какие инструменты, где боли и что можно автоматизировать.
+  </p>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">30–50</div>
+      <div class="stat-label">Сообщений/день от Мамы</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--copper)">72×</div>
+      <div class="stat-label">«Ждём остальных» (боль)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--purple)">85%</div>
+      <div class="stat-label">Шаблонные сообщения</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--red)">↓ 50%</div>
+      <div class="stat-label">Падение вовлечённости</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE NAV -->
+<nav class="phase-nav">
+  <a class="phase-chip" href="#acquire"><div class="phase-dot" style="background:var(--sage)"></div>1. Привлечение</a>
+  <a class="phase-chip" href="#onboard"><div class="phase-dot" style="background:var(--copper)"></div>2. Онбординг</a>
+  <a class="phase-chip" href="#program"><div class="phase-dot" style="background:var(--purple)"></div>3. Структура программы</a>
+  <a class="phase-chip" href="#daily"><div class="phase-dot" style="background:var(--gold)"></div>4. Ежедневный цикл</a>
+  <a class="phase-chip" href="#method"><div class="phase-dot" style="background:var(--red)"></div>5. Авторская методика</a>
+  <a class="phase-chip" href="#close"><div class="phase-dot" style="background:var(--blue)"></div>6. Завершение</a>
+  <a class="phase-chip" href="#infra"><div class="phase-dot" style="background:var(--teal)"></div>7. Роли и инструменты</a>
+</nav>
+
+<!-- ═══════════════════ TIMELINE ═══════════════════ -->
+<div class="timeline-container">
+
+<!-- ──── ФАЗА 1: ПРИВЛЕЧЕНИЕ ──── -->
+<div class="phase-acquire" id="acquire">
+  <div class="phase-header">
+    <div class="phase-icon">1</div>
+    <div class="phase-label">Фаза 1</div>
+    <div class="phase-title">Привлечение и квалификация</div>
+    <div class="phase-desc">От первого контакта до подтверждения готовности</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">1</span>
+      <span class="step-title">Входящий запрос клиента</span>
+      <div class="step-body">
+        Клиент пишет в WhatsApp или Telegram: «Хочу консультацию» или «Хочу на сопровождение». Два разных пути в зависимости от запроса.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👤 Клиент</span>
+        <span class="tag tag-tool">WhatsApp / Telegram</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        ИИ-бот: автоприветствие, определение типа запроса (консультация vs. сопровождение), маршрутизация в нужную воронку. Квалификация через 2-3 вопроса.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">2</span>
+      <span class="step-title">Приветствие + отправка анкеты</span>
+      <div class="step-body">
+        Залина приветствует клиента и предлагает заполнить анкету (Яндекс.Формы). Просит написать, когда заполнит.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Яндекс.Формы</span>
+        <span class="tag tag-pain">⚠ Ручная отправка ссылки</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Бот автоматически отправляет ссылку на анкету. Webhook из Яндекс.Форм уведомляет о заполнении. Нет необходимости ждать SMS «я заполнил».
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">3</span>
+      <span class="step-title">Развилка: тип услуги</span>
+      <div class="step-body">
+        <ul>
+          <li><strong>Путь А — Разовая консультация:</strong> отправка тарифов (5 500₽ без меню / 7 000₽ с меню)</li>
+          <li><strong>Путь Б — Сопровождение:</strong> бесплатная диагностическая Zoom-встреча до 30 мин → рассказ о программе → тарифы (1 / 1,5 / 2 / 3 мес)</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Zoom (Путь Б)</span>
+        <span class="tag tag-time">⏱ 30 мин (Путь Б)</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Путь А: бот отправляет карточки тарифов с кнопками. Путь Б: бот бронирует слот через Calendly/Cal.com, отправляет ссылку Zoom автоматически. Залина подключается только на звонок.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">4</span>
+      <span class="step-title">Оплата</span>
+      <div class="step-body">
+        <ul>
+          <li>Путь А: полная оплата по ссылке Тинькофф</li>
+          <li>Путь Б: выбор — 50/50 или полная. Отправка ссылки на предоплату</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Тинькофф</span>
+        <span class="tag tag-pain">⚠ Ручная генерация ссылки</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Тинькофф API: автогенерация ссылки оплаты. Webhook подтверждения → автоматический переход к следующему шагу. Напоминания при неоплате через 24ч/48ч.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 2: ОНБОРДИНГ ──── -->
+<div class="phase-onboard" id="onboard">
+  <div class="phase-header">
+    <div class="phase-icon">2</div>
+    <div class="phase-label">Фаза 2</div>
+    <div class="phase-title">Онбординг и подготовка</div>
+    <div class="phase-desc">От оплаты до первой консультации</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">5</span>
+      <span class="step-title">Подготовка индивидуального чекапа</span>
+      <div class="step-body">
+        Залина составляет персональный список анализов для клиента. Просит прислать уже имеющиеся результаты.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-time">⏱ Несколько часов</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Шаблонный чекап с индивидуальными дополнениями на основе анкеты. ИИ предлагает базовый набор → Залина корректирует. PDF чекапа генерируется автоматически.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">6</span>
+      <span class="step-title">Клиент сдаёт анализы</span>
+      <div class="step-body">
+        Клиент сдаёт анализы в лаборатории и присылает результаты в чат (фото/PDF).
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👤 Клиент</span>
+        <span class="tag tag-tool">WhatsApp / Telegram</span>
+        <span class="tag tag-time">⏱ 3–7 дней (ожидание)</span>
+        <span class="tag tag-pain">⚠ Долгое ожидание</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Бот-напоминание: «Не забудьте сдать анализы! Осталось X дней до консультации». OCR-распознавание фото анализов → автозаполнение таблицы (предварительное).
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">7</span>
+      <span class="step-title">Разбор анализов Залиной</span>
+      <div class="step-body">
+        Залина заносит результаты в Яндекс.Таблицу, анализирует отклонения, пишет комментарии, готовит схему БАДов. Занимает несколько дней.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Яндекс.Таблицы</span>
+        <span class="tag tag-time">⏱ 2–5 дней</span>
+        <span class="tag tag-pain">⚠ Основной bottleneck</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        ИИ-ассистент: автозаполнение таблицы, предварительная маркировка отклонений (↑↓), черновик комментариев и схемы БАДов. Залина ревьюит и утверждает → экономия 60-70% времени.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">8</span>
+      <span class="step-title">Первая Zoom-консультация</span>
+      <div class="step-body">
+        <ul>
+          <li>Путь А (разовая): 1,5 часа — полный разбор анализов и рекомендации</li>
+          <li>Путь Б (сопровождение): 2 часа — разбор анализов + введение в программу «Интенсив» + объяснение психотехники</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Zoom</span>
+        <span class="tag tag-time">⏱ 1,5–2 часа</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">9</span>
+      <span class="step-title">Рассылка материалов после встречи</span>
+      <div class="step-body">
+        <ul>
+          <li>Ссылка на Яндекс.Таблицу с анализами + комментариями</li>
+          <li>Схема приёма БАДов (отдельным SMS)</li>
+          <li>Ссылки на маркетплейсы / адреса магазинов для покупки БАДов</li>
+          <li>Путь А заканчивается здесь. Путь Б → переход к программе</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">WhatsApp / Telegram</span>
+        <span class="tag tag-pain">⚠ Много ручных отправок</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Автоматическая рассылка пакета материалов по триггеру «консультация завершена»: таблица, схема БАДов, ссылки. Одна кнопка вместо 5-6 ручных сообщений.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 3: ПРОГРАММА ──── -->
+<div class="phase-program" id="program">
+  <div class="phase-header">
+    <div class="phase-icon">3</div>
+    <div class="phase-label">Фаза 3 &middot; Только путь Б</div>
+    <div class="phase-title">Программа «Интенсив» — структура</div>
+    <div class="phase-desc">Вводный день и настройка 4-х чатов</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">10</span>
+      <span class="step-title">Создание 4-х чатов</span>
+      <div class="step-body">
+        <ul>
+          <li><strong>💬 Рабочий чат</strong> — план дня, фото еды, обратная связь</li>
+          <li><strong>📋 Информационный</strong> — ежедневные привычки, образовательный контент</li>
+          <li><strong>🍽 Меню</strong> — примеры сбалансированных завтраков/обедов/ужинов (фото)</li>
+          <li><strong>💊 БАДы</strong> — таблица анализов, схема приёма, ссылки на покупку</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">WhatsApp / Telegram</span>
+        <span class="tag tag-pain">⚠ Ручное создание 4 чатов на каждого клиента</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Telegram-бот: автосоздание группы/каналов по шаблону при старте программы. Или единый бот с разделами вместо 4 чатов → меньше путаницы у клиента.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">11</span>
+      <span class="step-title">Вводный день (День 0)</span>
+      <div class="step-body">
+        <ul>
+          <li>В 21:00 отправляется план питания на первый день</li>
+          <li>Вводные материалы: список продуктов на неделю, источники БЖУ</li>
+          <li>Список покупок: электронные весы, блендер, сантиметр</li>
+          <li>Задание на вечер: психотехника перед сном</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍💼 Мария</span>
+        <span class="tag tag-time">⏱ 21:00</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Полностью автоматизируемый шаг: бот отправляет пакет материалов по расписанию (cron 21:00 в день старта). Контент заранее подготовлен в шаблоне.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">12</span>
+      <span class="step-title">Утро Дня 1 — точка А</span>
+      <div class="step-body">
+        Клиент присылает утром: вес + замеры (талия, живот, бёдра). Это «точка А» — стартовые параметры для отслеживания прогресса.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👤 Клиент</span>
+        <span class="tag tag-time">⏱ Утро</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Бот запрашивает данные через кнопки/форму, парсит числа, автоматически заносит в таблицу прогресса. Генерирует стартовую карточку клиента.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 4: ЕЖЕДНЕВНЫЙ ЦИКЛ ──── -->
+<div class="phase-daily" id="daily">
+  <div class="phase-header">
+    <div class="phase-icon">4</div>
+    <div class="phase-label">Фаза 4 &middot; Повтор каждый день</div>
+    <div class="phase-title">Ежедневный цикл ведения клиента</div>
+    <div class="phase-desc">Основная операционная нагрузка — 30-50 сообщений/день</div>
+  </div>
+
+  <div class="loop-card">
+    <div class="loop-label">↻ Повторяется 28-30 дней (ежедневно)</div>
+    <div class="loop-text">Этот блок — основа операционки. Здесь сосредоточено ~85% ручного труда.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">A</span>
+      <span class="step-title">Вечер 21:00 — план на завтра</span>
+      <div class="step-body">
+        Мария отправляет в рабочий чат план на следующий день: тип дня (этапный/перерыв), задания, напоминания. Задание на вечер: психотехника перед сном.
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из реального чата (Мама, 20:06)</span>
+🍃без мучного и сладкого сегодня? Да/Нет
+🍃Сколько воды выпито?
+🍃Сбалансированное было питание?
+🍃Физнагрузка была сегодня? пресс?
+🍃На какие продукты будет сегодня психотехника?🙌</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍💼 Мария</span>
+        <span class="tag tag-time">⏱ 20:00–21:00</span>
+        <span class="tag tag-pain">⚠ 816 сообщений за 2 мес в этом окне</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — ВЫСОКИЙ</strong>
+        100% автоматизируемый шаг. Бот по cron: отправка плана дня, вечерний опросник с кнопками (Да/Нет, число литров, выбор продуктов). Автосбор ответов в таблицу.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">B</span>
+      <span class="step-title">Утро — приветствие + вес</span>
+      <div class="step-body">
+        <ul>
+          <li>Мария: утреннее приветствие + список привычек на день</li>
+          <li>Клиент: присылает вес в личный чат</li>
+        </ul>
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из реального чата (Мама, ~09:00)</span>
+Доброе утро, прекрасные участницы!🌹🤗
+🔸Ваше идеальное утро:
+- Идеальный завтрак: пришлите фото в ЧАТ
+- Утренняя зарядка, пресс
+- ДЕТОКС с кокосовым маслом да/нет
+- Дыхательное упражнение
+- «Золотое молоко»</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍💼 Мария</span>
+        <span class="tag tag-who">👤 Клиент</span>
+        <span class="tag tag-time">⏱ 08:00–10:00</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — ВЫСОКИЙ</strong>
+        Бот: утреннее сообщение по расписанию + запрос веса через inline-кнопки. Парсинг числа → запись в таблицу → график прогресса автоматически.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">C</span>
+      <span class="step-title">В течение дня — фото еды + проверка</span>
+      <div class="step-body">
+        <ul>
+          <li>Клиент присылает фото завтрака, обеда, ужина в рабочий чат</li>
+          <li><strong>Залина</strong> проверяет баланс БЖУ, объём порции, наличие зелени</li>
+          <li>Мария отправляет плановые вопросы по привычкам</li>
+          <li>Залина отвечает на вопросы клиента</li>
+        </ul>
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Типичная обратная связь Залины</span>
+«Идеальный завтрак!👍🌟»
+«БЖУ+зелень = идеальный обед⭐️»
+«это углеводы, добавляем белки
+ и растительную клетчатку🌿»</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-who">👩‍💼 Мария</span>
+        <span class="tag tag-time">⏱ 10:00–20:00</span>
+        <span class="tag tag-pain">⚠ Основная нагрузка на Залину</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — СРЕДНИЙ</strong>
+        ИИ Vision: предварительный анализ фото еды (распознавание продуктов, оценка баланса БЖУ, наличие зелени). Генерация черновика обратной связи → Залина подтверждает или правит. Плановые вопросы Марии → полностью через бота.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">D</span>
+      <span class="step-title">Контроль участия</span>
+      <div class="step-body">
+        Если клиент не отвечает на вопросы или не присылает фото — Залина сама начинает задавать вопросы в чате. Мотивация отстающих.
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Фраза-индикатор (72 раза за 2 мес)</span>
+«ждём остальных🙌»</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-pain">⚠ Падение вовлечённости на 50% к концу</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — ВЫСОКИЙ</strong>
+        Бот-трекер: автоматически отслеживает кто ответил/не ответил. Через 2ч без ответа → личное напоминание. Через 6ч → уведомление Залине: «Фатима не прислала фото обеда». Еженедельный отчёт вовлечённости.
+      </div>
+    </div>
+  </div>
+
+  <div class="loop-card">
+    <div class="loop-label">↻ Конец недели — итоги (каждые 7 дней)</div>
+    <div class="loop-text">Замеры (вес, талия, живот, бёдра) → Zoom-встреча 30–40 мин → план на следующую неделю</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">E</span>
+      <span class="step-title">Еженедельная Zoom-встреча</span>
+      <div class="step-body">
+        <ul>
+          <li>Мария вечером предупреждает: «Завтра подводим итоги»</li>
+          <li>Клиент присылает замеры утром</li>
+          <li>Залина проводит Zoom 30-40 мин: обсуждение результатов + план</li>
+          <li>Всего 4-5 встреч за месяц (вводная + 4 недельных)</li>
+        </ul>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Zoom</span>
+        <span class="tag tag-time">⏱ 30–40 мин / нед</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — ЧАСТИЧНЫЙ</strong>
+        Автосбор замеров ботом → генерация отчёта с графиками прогресса → Залина получает готовый дашборд перед звонком. Calendly для бронирования слота. Запись Zoom → автосаммари ИИ.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 5: МЕТОДИКА ──── -->
+<div class="phase-method" id="method">
+  <div class="phase-header">
+    <div class="phase-icon">5</div>
+    <div class="phase-label">Фаза 5 &middot; Внутри ежедневного цикла</div>
+    <div class="phase-title">Авторская методика: однодневный этап</div>
+    <div class="phase-desc">Техника снятия зависимости от мучного и сладкого</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">I</span>
+      <span class="step-title">День этапа — исключение муки и сахара</span>
+      <div class="step-body">
+        <ul>
+          <li>Полное исключение рафинированного сахара и белой муки на 1 день</li>
+          <li>Психотехника (мыслительное упражнение) 5–7 раз за день</li>
+          <li>При виде мучного/сладкого — выполнять упражнение</li>
+        </ul>
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из чата — вечерний вопрос</span>
+🍃На какие продукты будет сегодня
+  психотехника?🙌
+Ответы: «Конфеты», «Хлеб», «Торт»</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👤 Клиент</span>
+        <span class="tag tag-time">⏱ Весь день</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">II</span>
+      <span class="step-title">День перерыва — контролируемое послабление</span>
+      <div class="step-body">
+        <ul>
+          <li>До 15:30 разрешается мучное/сладкое (не более 50-100г)</li>
+          <li>После обеда — возврат к сбалансированному питанию</li>
+          <li>Цель: показать мозгу «это не диета, запрета нет»</li>
+        </ul>
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из чата — объявление перерыва</span>
+Завтра делаем ПЕРЕРЫВ!👍🌟
+Можно поесть ещё горячо любимые
+в прошлом продукты из муки
+и с содержанием Сахара!)</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍💼 Мария</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">III</span>
+      <span class="step-title">Прогрессия этапов по неделям</span>
+      <div class="step-body">
+        <ul>
+          <li><strong>Неделя 1:</strong> Однодневный этап (1 день без → перерыв → повтор 3 раза)</li>
+          <li><strong>Недели 2-3:</strong> Трёхдневный этап (3 дня без → перерыв → повтор 2 раза)</li>
+          <li><strong>Недели 3-4:</strong> Семидневный этап (7 дней без → перерыв → повтор 2 раза)</li>
+          <li><strong>Недели 5-8:</strong> Закрепление и практика</li>
+        </ul>
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из чата — объявление нового этапа</span>
+ПОЗДРАВЛЯЮ ВСЕХ С ЗАВЕРШЕНИЕМ ЭТАПА!👍👏🌹
+Если вы прошли без нарушений,
+напишите: ДА. ГОТОВА!✊🔥</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        Бот-календарь: автоматически переключает тип дня (этап/перерыв) по программе. Утром сообщает клиенту тип дня. Переход между этапами — по триггеру или расписанию.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 6: ЗАВЕРШЕНИЕ ──── -->
+<div class="phase-close" id="close">
+  <div class="phase-header">
+    <div class="phase-icon">6</div>
+    <div class="phase-label">Фаза 6</div>
+    <div class="phase-title">Завершение программы и ретеншн</div>
+    <div class="phase-desc">Итоги месяца, повторные анализы, продление</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">13</span>
+      <span class="step-title">Итоговая Zoom-встреча (5-я)</span>
+      <div class="step-body">
+        Подведение итогов месяца: динамика веса, замеров, привычек. Обсуждение ощущений и достижений.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Zoom</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">14</span>
+      <span class="step-title">Повторный чекап анализов</span>
+      <div class="step-body">
+        Залина готовит список анализов для проверки динамики по показателям, которые были в отклонении. Клиент сдаёт повторно.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-time">⏱ 3–7 дней</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">15</span>
+      <span class="step-title">Разбор повторных анализов + новая схема БАДов</span>
+      <div class="step-body">
+        Zoom-встреча: комментарии по динамике, корректировка или новая схема приёма БАДов на следующий месяц.
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍⚕️ Залина</span>
+        <span class="tag tag-tool">Zoom</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации</strong>
+        ИИ: автосравнение анализов «до/после» → генерация отчёта с визуализацией динамики (↑↓). Черновик рекомендаций по корректировке БАДов.
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">16</span>
+      <span class="step-title">Итоговый опрос + предложение продления</span>
+      <div class="step-body">
+        Комплексный опрос по 4 блокам: внешность, самочувствие, привычки, удовлетворённость. Предложение перейти в «Чат поддержки» или продлить сопровождение.
+      </div>
+      <div class="real-data">
+        <span class="real-data-label">Из реального чата — итоговый опрос (02.02.2022)</span>
+1. ВНЕШНОСТЬ:
+🌸Цвет лица и кожа посвежела? да/нет
+🌸Ушли отеки с лица, тела?
+2. САМОЧУВСТВИЕ:
+💖Улучшился сон?
+💖Появилась энергия?
+3. ПОЛЕЗНЫЕ ПРИВЫЧКИ:
+🌿Допиваю свою норму воды?
+🌿Питаюсь сбалансировано БЖУ?
+4. Довольна результатом?
+5. Хотите продолжить?</div>
+      <div class="step-meta">
+        <span class="tag tag-who">👩‍💼 Мария</span>
+        <span class="tag tag-pain">⚠ Нет системы сбора NPS/отзывов</span>
+      </div>
+      <div class="auto-hint">
+        <strong>🤖 Потенциал автоматизации — ВЫСОКИЙ</strong>
+        Бот: автоопрос через кнопки → автоагрегация результатов → NPS-скор. Автопредложение продления с ценой. Запрос отзыва для социальных доказательств.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── ФАЗА 7: ИНФРАСТРУКТУРА ──── -->
+<div class="phase-infra" id="infra">
+  <div class="phase-header">
+    <div class="phase-icon">7</div>
+    <div class="phase-label">Сквозное</div>
+    <div class="phase-title">Роли, инструменты и боли</div>
+    <div class="phase-desc">Текущая команда и точки оптимизации</div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">👩‍⚕️</span>
+      <span class="step-title">Залина — нутрициолог (незаменяемые функции)</span>
+      <div class="step-body">
+        <ul>
+          <li>Разбор анализов крови и составление рекомендаций</li>
+          <li>Zoom-консультации (вводная 2ч + 4 еженедельных по 30-40 мин)</li>
+          <li>Проверка баланса БЖУ по фото еды</li>
+          <li>Ответы на медицинские вопросы</li>
+          <li>Составление и корректировка схемы БАДов</li>
+        </ul>
+        <br>
+        <strong>Итого на 1 клиента/мес:</strong> ~5ч Zoom + ~2ч анализы + ежедневная проверка фото
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-pain">⚠ Bottleneck масштабирования</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">👩‍💼</span>
+      <span class="step-title">Мария — помощница (делегируемые функции)</span>
+      <div class="step-body">
+        <ul>
+          <li>Рассылка планов на день (21:00 каждый вечер)</li>
+          <li>Утреннее приветствие + список привычек</li>
+          <li>Плановые вопросы в течение дня</li>
+          <li>Все ежедневные рассылки и напоминания</li>
+        </ul>
+        <br>
+        <strong>Итого:</strong> 30-50 сообщений/день × 30 дней = <strong>~1200 сообщений/мес на 1 клиента</strong>
+      </div>
+      <div class="step-meta">
+        <span class="tag tag-ai">🤖 90% автоматизируемо</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">⚠</span>
+      <span class="step-title">Ключевые боли из реальных данных</span>
+      <div class="step-body">
+        <ul>
+          <li><strong>Падение вовлечённости:</strong> ответы клиентов падают с ~100% до ~30-50% к концу программы. «Ждём остальных» — 72 раза</li>
+          <li><strong>Путаница каналов:</strong> 4 чата + личка → клиенты не понимают куда писать. «В личку вижу» / «дублирую здесь» — постоянно</li>
+          <li><strong>Праздники:</strong> Новогодние праздники обрушили участие до 4 сообщений/день</li>
+          <li><strong>Фото еды:</strong> клиенты часто не присылают — «без фото» / «не успела сфоткать»</li>
+          <li><strong>Ручной труд:</strong> 85% сообщений Мамы — шаблонные, повторяются каждый день</li>
+          <li><strong>Нет аналитики:</strong> вес/замеры приходят текстом в чат — нет графиков, трекинга</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-connector"></div>
+    <div class="step-card">
+      <span class="step-num-badge">🛠</span>
+      <span class="step-title">Текущий стек инструментов</span>
+      <div class="step-body">
+        <ul>
+          <li><strong>Коммуникация:</strong> WhatsApp (основной), Telegram (альтернатива), Zoom (видео)</li>
+          <li><strong>Формы:</strong> Яндекс.Формы (анкета), Google Forms (опрос участников)</li>
+          <li><strong>Данные:</strong> Яндекс.Таблицы (анализы)</li>
+          <li><strong>Оплата:</strong> Тинькофф (ручные ссылки)</li>
+          <li><strong>Контент:</strong> Telegraph (статьи), YouTube (видео упражнений), Instagram (рецепты)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /timeline-container -->
+
+</body>
+</html>

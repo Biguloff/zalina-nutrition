@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бизнес-процессы — Залина Бигулова</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-dark: #F0E8DA;
+    --sage: #5A7A60;
+    --sage-light: #7A9A80;
+    --sage-pale: #E8F0E8;
+    --copper: #C17744;
+    --copper-light: #D4956A;
+    --gold: #A08860;
+    --gold-light: #C4AD85;
+    --charcoal: #2D3436;
+    --brown: #5A4A35;
+    --brown-light: #8A7A60;
+    --white: #FFFFFF;
+    --border: #D4C4A8;
+    --red: #C0392B;
+    --amber: #B8860B;
+    --green: #2E7D32;
+    --shadow: rgba(90, 74, 53, 0.08);
+    --shadow-md: rgba(90, 74, 53, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--charcoal);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 20px var(--shadow);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--sage), var(--sage-light));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 3px 12px rgba(90,122,96,0.3);
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brown);
+    letter-spacing: -0.3px;
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+    color: var(--brown-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .header-controls {
+    display: flex; gap: 8px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .btn:hover {
+    background: var(--cream-dark);
+    border-color: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px var(--shadow);
+  }
+
+  .btn-sage {
+    background: var(--sage);
+    color: white;
+    border-color: var(--sage);
+  }
+
+  .btn-sage:hover {
+    background: var(--sage-light);
+    border-color: var(--sage-light);
+  }
+
+  /* Canvas area */
+  .canvas-wrapper {
+    position: fixed;
+    top: 80px; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .canvas-wrapper:active { cursor: grabbing; }
+
+  .canvas {
+    position: absolute;
+    transform-origin: 0 0;
+    will-change: transform;
+  }
+
+  /* SVG connections */
+  .connections-svg {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .connection {
+    fill: none;
+    stroke-width: 2;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  /* Nodes */
+  .node {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+    transform-origin: center;
+  }
+
+  .node:hover { transform: scale(1.03); z-index: 10; }
+
+  .node-content {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 3px 16px var(--shadow);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .node:hover .node-content {
+    box-shadow: 0 6px 28px var(--shadow-md);
+    border-color: var(--gold-light);
+  }
+
+  .node-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: 14px 0 0 14px;
+  }
+
+  /* Node levels */
+  .node-root .node-content {
+    background: linear-gradient(135deg, var(--sage), #4A6A50);
+    border: none;
+    padding: 24px 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(90,122,96,0.3);
+  }
+
+  .node-root .node-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+  }
+
+  .node-root .node-subtitle {
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .node-root .node-content::before { display: none; }
+
+  /* Level 1 — main branches */
+  .node-l1 .node-content::before { background: var(--copper); }
+  .node-l1 .node-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brown);
+  }
+
+  .node-l1 .node-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+
+  /* Level 2 — sub-branches */
+  .node-l2 .node-content::before { background: var(--sage); }
+  .node-l2 .node-content { padding: 10px 14px; }
+  .node-l2 .node-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  /* Level 3 — details */
+  .node-l3 .node-content {
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: var(--cream);
+    border-color: var(--cream-dark);
+  }
+  .node-l3 .node-content::before { background: var(--gold); width: 3px; }
+  .node-l3 .node-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--brown);
+    line-height: 1.4;
+  }
+
+  .node-l3:hover .node-content {
+    background: var(--white);
+  }
+
+  /* Step numbering */
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .step-sage { background: var(--sage-pale); color: var(--sage); }
+  .step-copper { background: #FFF0E5; color: var(--copper); }
+  .step-gold { background: #F5EFE0; color: var(--gold); }
+
+  .node-title-row {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Toggle indicator */
+  .toggle-icon {
+    position: absolute;
+    right: 10px; top: 50%;
+    transform: translateY(-50%);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: var(--brown-light);
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+  }
+
+  .node.collapsed .toggle-icon {
+    background: var(--gold);
+    color: white;
+    border-color: var(--gold);
+  }
+
+  .node-root .toggle-icon {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  /* Color coding per branch */
+  .branch-funnel1 .node-content::before { background: var(--sage); }
+  .branch-funnel2 .node-content::before { background: var(--copper); }
+  .branch-intensive .node-content::before { background: #7B68AE; }
+  .branch-daily .node-content::before { background: var(--gold); }
+  .branch-method .node-content::before { background: var(--red); }
+  .branch-roles .node-content::before { background: #3498DB; }
+  .branch-tools .node-content::before { background: #1ABC9C; }
+
+  /* Legend */
+  .legend {
+    position: fixed;
+    bottom: 20px; left: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 20px var(--shadow);
+    z-index: 50;
+    font-size: 12px;
+  }
+
+  .legend-title {
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    color: var(--brown-light);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* Minimap */
+  .minimap {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    width: 180px; height: 120px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px var(--shadow);
+    z-index: 50;
+    overflow: hidden;
+  }
+
+  .minimap-viewport {
+    position: absolute;
+    border: 2px solid var(--copper);
+    border-radius: 3px;
+    background: rgba(193, 119, 68, 0.08);
+    pointer-events: none;
+  }
+
+  /* Zoom controls */
+  .zoom-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: 0 4px 20px var(--shadow);
+    z-index: 50;
+  }
+
+  .zoom-btn {
+    width: 36px; height: 36px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--brown);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  .zoom-btn:hover { background: var(--cream); }
+
+  .zoom-level {
+    padding: 0 10px;
+    display: flex; align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brown-light);
+    min-width: 48px;
+    justify-content: center;
+  }
+
+  /* Animations */
+  @keyframes nodeAppear {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .node { animation: nodeAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards; }
+
+  /* Hidden nodes */
+  .node.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5) !important;
+  }
+
+  .connection.hidden { opacity: 0; }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed;
+    background: var(--charcoal);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    max-width: 280px;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  }
+
+  .tooltip.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-icon">🌿</div>
+    <div>
+      <h1>Бизнес-процессы</h1>
+      <div class="header-subtitle">Залина Бигулова &middot; Нутрициолог-натуропат</div>
+    </div>
+  </div>
+  <div class="header-controls">
+    <button class="btn" onclick="expandAll()">
+      <span>↕</span> Раскрыть всё
+    </button>
+    <button class="btn" onclick="collapseAll()">
+      <span>↔</span> Свернуть
+    </button>
+    <button class="btn btn-sage" onclick="resetView()">
+      <span>◎</span> Центрировать
+    </button>
+  </div>
+</div>
+
+<div class="canvas-wrapper" id="canvasWrapper">
+  <div class="canvas" id="canvas">
+    <svg class="connections-svg" id="connectionsSvg"></svg>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-title">Разделы</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--sage)"></div>Разовая консультация</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--copper)"></div>Программа сопровождения</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7B68AE"></div>Интенсив (структура)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>Ежедневный цикл</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Авторская методика</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3498DB"></div>Роли</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1ABC9C"></div>Инструменты</div>
+</div>
+
+<div class="zoom-controls">
+  <button class="zoom-btn" onclick="zoomOut()">−</button>
+  <div class="zoom-level" id="zoomLevel">100%</div>
+  <button class="zoom-btn" onclick="zoomIn()">+</button>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const TREE = {
+  id: 'root',
+  title: 'Бизнес-процессы',
+  subtitle: 'Работа с клиентами',
+  level: 'root',
+  children: [
+    {
+      id: 'funnel1',
+      badge: 'Воронка 1',
+      title: 'Разовая консультация',
+      level: 'l1',
+      branch: 'funnel1',
+      tip: 'Единовременная консультация с разбором анализов, без программы сопровождения',
+      children: [
+        { id: 'f1_1', title: 'Запрос клиента', level: 'l2', branch: 'funnel1', stepNum: 1, stepColor: 'sage',
+          children: [
+            { id: 'f1_1a', title: 'SMS / звонок в WhatsApp или Telegram', level: 'l3', branch: 'funnel1' },
+            { id: 'f1_1b', title: '«Хочу консультацию»', level: 'l3', branch: 'funnel1' },
+          ]
+        },
+        { id: 'f1_2', title: 'Приветствие + анкета', level: 'l2', branch: 'funnel1', stepNum: 2, stepColor: 'sage',
+          children: [
+            { id: 'f1_2a', title: 'Отправка ссылки на Яндекс.Анкету', level: 'l3', branch: 'funnel1' },
+            { id: 'f1_2b', title: 'Просьба написать после заполнения', level: 'l3', branch: 'funnel1' },
+          ]
+        },
+        { id: 'f1_3', title: 'Выбор тарифа', level: 'l2', branch: 'funnel1', stepNum: 3, stepColor: 'sage',
+          children: [
+            { id: 'f1_3a', title: 'Без меню — 5 500 ₽', level: 'l3', branch: 'funnel1' },
+            { id: 'f1_3b', title: 'С меню и рецептами на неделю — 7 000 ₽', level: 'l3', branch: 'funnel1' },
+          ]
+        },
+        { id: 'f1_4', title: 'Оплата через Тинькофф', level: 'l2', branch: 'funnel1', stepNum: 4, stepColor: 'sage' },
+        { id: 'f1_5', title: 'Подготовка чекапа анализов', level: 'l2', branch: 'funnel1', stepNum: 5, stepColor: 'sage',
+          children: [
+            { id: 'f1_5a', title: 'Персональный список анализов', level: 'l3', branch: 'funnel1' },
+            { id: 'f1_5b', title: 'Запрос готовых результатов у клиента', level: 'l3', branch: 'funnel1' },
+          ]
+        },
+        { id: 'f1_6', title: 'Получение результатов', level: 'l2', branch: 'funnel1', stepNum: 6, stepColor: 'sage',
+          children: [
+            { id: 'f1_6a', title: 'Клиент присылает в чат', level: 'l3', branch: 'funnel1' },
+            { id: 'f1_6b', title: 'Разбор анализов — несколько дней', level: 'l3', branch: 'funnel1' },
+          ]
+        },
+        { id: 'f1_7', title: 'Согласование даты и времени', level: 'l2', branch: 'funnel1', stepNum: 7, stepColor: 'sage' },
+        { id: 'f1_8', title: 'Zoom-консультация — 1,5 часа', level: 'l2', branch: 'funnel1', stepNum: 8, stepColor: 'sage' },
+      ]
+    },
+    {
+      id: 'funnel2',
+      badge: 'Воронка 2',
+      title: 'Программа сопровождения',
+      level: 'l1',
+      branch: 'funnel2',
+      tip: 'Длительная программа: от 1 до 3 месяцев персонального ведения клиента',
+      children: [
+        { id: 'f2_1', title: 'Запрос «Хочу на сопровождение»', level: 'l2', branch: 'funnel2', stepNum: 1, stepColor: 'copper' },
+        { id: 'f2_2', title: 'Приветствие + анкета', level: 'l2', branch: 'funnel2', stepNum: 2, stepColor: 'copper',
+          children: [
+            { id: 'f2_2a', title: 'Яндекс.Анкета — оценка здоровья', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_3', title: 'Бесплатная диагностика', level: 'l2', branch: 'funnel2', stepNum: 3, stepColor: 'copper',
+          children: [
+            { id: 'f2_3a', title: 'Zoom-видеосвязь до 30 минут', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_3b', title: 'Рассказ о программе и форматах', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_4', title: 'Выбор тарифа клиентом', level: 'l2', branch: 'funnel2', stepNum: 4, stepColor: 'copper',
+          children: [
+            { id: 'f2_4a', title: '1 месяц', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_4b', title: '1,5 месяца', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_4c', title: '2 месяца', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_4d', title: '3 месяца', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_5', title: 'Предоплата', level: 'l2', branch: 'funnel2', stepNum: 5, stepColor: 'copper',
+          children: [
+            { id: 'f2_5a', title: 'Вариант 50/50 или полная оплата', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_5b', title: 'Ссылка на оплату от Тинькофф', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_6', title: 'Чекап анализов + сдача', level: 'l2', branch: 'funnel2', stepNum: 6, stepColor: 'copper' },
+        { id: 'f2_7', title: 'Первая встреча — 2 часа (Zoom)', level: 'l2', branch: 'funnel2', stepNum: 7, stepColor: 'copper',
+          children: [
+            { id: 'f2_7a', title: 'Полный разбор анализов', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_7b', title: 'Рекомендации по дефицитам (БАДы)', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_8', title: 'После встречи — рассылка материалов', level: 'l2', branch: 'funnel2', stepNum: 8, stepColor: 'copper',
+          children: [
+            { id: 'f2_8a', title: 'Яндекс.Таблица с анализами + комментарии', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_8b', title: 'Схема приёма БАДов', level: 'l3', branch: 'funnel2' },
+            { id: 'f2_8c', title: 'Ссылки на маркетплейсы / адреса магазинов', level: 'l3', branch: 'funnel2' },
+          ]
+        },
+        { id: 'f2_9', title: 'Старт программы «Интенсив»', level: 'l2', branch: 'funnel2', stepNum: 9, stepColor: 'copper' },
+      ]
+    },
+    {
+      id: 'intensive',
+      badge: 'Программа',
+      title: '«Интенсив» — структура месяца',
+      level: 'l1',
+      branch: 'intensive',
+      tip: 'Авторская программа первого месяца сопровождения',
+      children: [
+        { id: 'int_0', title: 'Вводный день (День 0)', level: 'l2', branch: 'intensive', stepNum: 0, stepColor: 'gold',
+          children: [
+            { id: 'int_0a', title: 'Создание 4 чатов WhatsApp/Telegram', level: 'l3', branch: 'intensive' },
+            { id: 'int_0b', title: 'План питания отправляется в 21:00', level: 'l3', branch: 'intensive' },
+            { id: 'int_0c', title: 'Вводные материалы + список покупок', level: 'l3', branch: 'intensive' },
+            { id: 'int_0d', title: 'Задание: психотехника перед сном', level: 'l3', branch: 'intensive' },
+          ]
+        },
+        { id: 'int_chats', title: '4 чата для работы', level: 'l2', branch: 'intensive',
+          children: [
+            { id: 'int_ch1', title: '💬 Рабочий — план дня, фото еды', level: 'l3', branch: 'intensive' },
+            { id: 'int_ch2', title: '📋 Информационный — привычки дня', level: 'l3', branch: 'intensive' },
+            { id: 'int_ch3', title: '🍽 Меню — примеры сбалансированных блюд', level: 'l3', branch: 'intensive' },
+            { id: 'int_ch4', title: '💊 БАДы — таблица, схема, ссылки', level: 'l3', branch: 'intensive' },
+          ]
+        },
+        { id: 'int_w1', title: 'Неделя 1: Однодневный этап', level: 'l2', branch: 'intensive', stepNum: 1, stepColor: 'gold' },
+        { id: 'int_w2', title: 'Неделя 2: повтор цикла', level: 'l2', branch: 'intensive', stepNum: 2, stepColor: 'gold' },
+        { id: 'int_w3', title: 'Неделя 3: повтор цикла', level: 'l2', branch: 'intensive', stepNum: 3, stepColor: 'gold' },
+        { id: 'int_w4', title: 'Неделя 4: итоги месяца', level: 'l2', branch: 'intensive', stepNum: 4, stepColor: 'gold',
+          children: [
+            { id: 'int_w4a', title: 'Итоговая Zoom-встреча', level: 'l3', branch: 'intensive' },
+            { id: 'int_w4b', title: 'Повторный чекап анализов', level: 'l3', branch: 'intensive' },
+            { id: 'int_w4c', title: 'Новая/скорректированная схема БАДов', level: 'l3', branch: 'intensive' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 'daily',
+      badge: 'Цикл',
+      title: 'Ежедневный распорядок',
+      level: 'l1',
+      branch: 'daily',
+      tip: 'Повторяющийся ежедневный цикл взаимодействия с клиентом',
+      children: [
+        { id: 'd_eve', title: 'Вечер 21:00 — план на завтра', level: 'l2', branch: 'daily', stepNum: 1, stepColor: 'gold',
+          children: [
+            { id: 'd_eve1', title: 'Мария отправляет план дня', level: 'l3', branch: 'daily' },
+            { id: 'd_eve2', title: 'Задание на вечер: психотехника', level: 'l3', branch: 'daily' },
+          ]
+        },
+        { id: 'd_morn', title: 'Утро — вес + приветствие', level: 'l2', branch: 'daily', stepNum: 2, stepColor: 'gold',
+          children: [
+            { id: 'd_morn1', title: 'Клиент присылает вес в личку', level: 'l3', branch: 'daily' },
+            { id: 'd_morn2', title: 'Мария: утреннее приветствие + привычки', level: 'l3', branch: 'daily' },
+          ]
+        },
+        { id: 'd_day', title: 'В течение дня', level: 'l2', branch: 'daily', stepNum: 3, stepColor: 'gold',
+          children: [
+            { id: 'd_day1', title: 'Клиент: фото завтрака, обеда, ужина', level: 'l3', branch: 'daily' },
+            { id: 'd_day2', title: 'Залина: проверка баланса тарелок', level: 'l3', branch: 'daily' },
+            { id: 'd_day3', title: 'Мария: вопросы по привычкам', level: 'l3', branch: 'daily' },
+            { id: 'd_day4', title: 'Залина: ответы на вопросы клиента', level: 'l3', branch: 'daily' },
+          ]
+        },
+        { id: 'd_week', title: 'Конец недели — итоги', level: 'l2', branch: 'daily', stepNum: 4, stepColor: 'gold',
+          children: [
+            { id: 'd_week1', title: 'Замеры: вес, талия, живот, бёдра', level: 'l3', branch: 'daily' },
+            { id: 'd_week2', title: 'Zoom-встреча 30–40 мин', level: 'l3', branch: 'daily' },
+            { id: 'd_week3', title: 'План на следующую неделю', level: 'l3', branch: 'daily' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 'method',
+      badge: 'Методика',
+      title: 'Однодневный этап (авторская)',
+      level: 'l1',
+      branch: 'method',
+      tip: 'Авторская техника снятия зависимости от мучного и сладкого',
+      children: [
+        { id: 'm_stage', title: 'День этапа', level: 'l2', branch: 'method', stepNum: 1, stepColor: 'copper',
+          children: [
+            { id: 'm_stage1', title: 'Полное исключение муки и сахара', level: 'l3', branch: 'method' },
+            { id: 'm_stage2', title: 'Психотехника 5–7 раз в течение дня', level: 'l3', branch: 'method' },
+            { id: 'm_stage3', title: 'При виде мучного/сладкого — упражнение', level: 'l3', branch: 'method' },
+          ]
+        },
+        { id: 'm_break', title: 'День перерыва', level: 'l2', branch: 'method', stepNum: 2, stepColor: 'copper',
+          children: [
+            { id: 'm_break1', title: 'До 15:30 — можно мучное/сладкое', level: 'l3', branch: 'method' },
+            { id: 'm_break2', title: 'Не более 50–100 г суммарно', level: 'l3', branch: 'method' },
+            { id: 'm_break3', title: 'После обеда — сбалансированное питание', level: 'l3', branch: 'method' },
+          ]
+        },
+        { id: 'm_rule', title: 'Правило: 3 дня этапа за неделю', level: 'l2', branch: 'method', stepNum: 3, stepColor: 'copper',
+          children: [
+            { id: 'm_rule1', title: 'Между днями этапа — обязательный перерыв', level: 'l3', branch: 'method' },
+            { id: 'm_rule2', title: 'Цель: не диета, а перенастройка мозга', level: 'l3', branch: 'method' },
+            { id: 'm_rule3', title: 'Нет запрета → нет сопротивления', level: 'l3', branch: 'method' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 'roles',
+      badge: 'Команда',
+      title: 'Роли и ответственность',
+      level: 'l1',
+      branch: 'roles',
+      tip: 'Распределение задач между Залиной и помощницей',
+      children: [
+        { id: 'r_z', title: 'Залина (нутрициолог)', level: 'l2', branch: 'roles',
+          children: [
+            { id: 'r_z1', title: 'Разбор анализов крови', level: 'l3', branch: 'roles' },
+            { id: 'r_z2', title: 'Zoom-консультации и встречи', level: 'l3', branch: 'roles' },
+            { id: 'r_z3', title: 'Проверка фото еды (баланс БЖУ)', level: 'l3', branch: 'roles' },
+            { id: 'r_z4', title: 'Ответы на вопросы клиента', level: 'l3', branch: 'roles' },
+            { id: 'r_z5', title: 'Составление схемы БАДов', level: 'l3', branch: 'roles' },
+          ]
+        },
+        { id: 'r_m', title: 'Мария (помощница)', level: 'l2', branch: 'roles',
+          children: [
+            { id: 'r_m1', title: 'Рассылка планов на день (21:00)', level: 'l3', branch: 'roles' },
+            { id: 'r_m2', title: 'Утреннее приветствие + привычки', level: 'l3', branch: 'roles' },
+            { id: 'r_m3', title: 'Плановые вопросы в течение дня', level: 'l3', branch: 'roles' },
+            { id: 'r_m4', title: 'Все ежедневные рассылки', level: 'l3', branch: 'roles' },
+          ]
+        },
+      ]
+    },
+    {
+      id: 'tools',
+      badge: 'Инструменты',
+      title: 'Каналы и сервисы',
+      level: 'l1',
+      branch: 'tools',
+      children: [
+        { id: 't_comm', title: 'Коммуникация', level: 'l2', branch: 'tools',
+          children: [
+            { id: 't_c1', title: 'WhatsApp (основной)', level: 'l3', branch: 'tools' },
+            { id: 't_c2', title: 'Telegram (альтернатива)', level: 'l3', branch: 'tools' },
+            { id: 't_c3', title: 'Zoom (видеовстречи)', level: 'l3', branch: 'tools' },
+          ]
+        },
+        { id: 't_biz', title: 'Бизнес-инструменты', level: 'l2', branch: 'tools',
+          children: [
+            { id: 't_b1', title: 'Яндекс.Формы — анкетирование', level: 'l3', branch: 'tools' },
+            { id: 't_b2', title: 'Яндекс.Таблицы — результаты анализов', level: 'l3', branch: 'tools' },
+            { id: 't_b3', title: 'Тинькофф — оплата по ссылке', level: 'l3', branch: 'tools' },
+          ]
+        },
+        { id: 't_shop', title: 'Покупка БАДов', level: 'l2', branch: 'tools',
+          children: [
+            { id: 't_s1', title: 'Маркетплейсы (ссылки)', level: 'l3', branch: 'tools' },
+            { id: 't_s2', title: 'Специализированные магазины (адреса)', level: 'l3', branch: 'tools' },
+          ]
+        },
+      ]
+    },
+  ]
+};
+
+// Layout engine
+const LAYOUT = {
+  rootX: 2600, rootY: 2000,
+  l1Radius: 380,
+  l2GapY: 58,
+  l2OffsetX: 300,
+  l3GapY: 42,
+  l3OffsetX: 260,
+  nodeWidths: { root: 220, l1: 240, l2: 230, l3: 220 }
+};
+
+let nodes = [];
+let connections = [];
+let collapsedSet = new Set();
+
+function layoutTree() {
+  nodes = [];
+  connections = [];
+
+  const root = TREE;
+  const rootNode = {
+    ...root,
+    x: LAYOUT.rootX,
+    y: LAYOUT.rootY,
+    w: LAYOUT.nodeWidths.root
+  };
+  nodes.push(rootNode);
+
+  const childCount = root.children.length;
+  // Spread children in an arc
+  const startAngle = -90;
+  const totalAngle = 200;
+
+  root.children.forEach((child, i) => {
+    const angleDeg = startAngle + (totalAngle / (childCount - 1)) * i;
+    const angleRad = (angleDeg * Math.PI) / 180;
+    const cx = LAYOUT.rootX + Math.cos(angleRad) * LAYOUT.l1Radius;
+    const cy = LAYOUT.rootY + Math.sin(angleRad) * LAYOUT.l1Radius;
+
+    const l1Node = {
+      ...child,
+      x: cx,
+      y: cy,
+      w: LAYOUT.nodeWidths.l1,
+      parentId: root.id,
+      angleDeg
+    };
+    nodes.push(l1Node);
+    connections.push({ from: root.id, to: child.id, branch: child.branch });
+
+    if (collapsedSet.has(child.id) || !child.children) return;
+
+    // Direction for l2 children: extend outward from root
+    const dirX = Math.cos(angleRad);
+    const dirY = Math.sin(angleRad);
+
+    // Perpendicular for stacking
+    const perpX = -dirY;
+    const perpY = dirX;
+
+    const l2Children = child.children;
+    const totalL2Height = (l2Children.length - 1) * LAYOUT.l2GapY;
+
+    l2Children.forEach((l2, j) => {
+      const offsetAlong = LAYOUT.l2OffsetX;
+      const offsetPerp = -totalL2Height / 2 + j * LAYOUT.l2GapY;
+
+      const l2x = cx + dirX * offsetAlong + perpX * offsetPerp;
+      const l2y = cy + dirY * offsetAlong + perpY * offsetPerp;
+
+      const l2Node = {
+        ...l2,
+        x: l2x,
+        y: l2y,
+        w: LAYOUT.nodeWidths.l2,
+        parentId: child.id
+      };
+      nodes.push(l2Node);
+      connections.push({ from: child.id, to: l2.id, branch: child.branch });
+
+      if (collapsedSet.has(l2.id) || !l2.children) return;
+
+      const l3Children = l2.children;
+      const totalL3Height = (l3Children.length - 1) * LAYOUT.l3GapY;
+
+      l3Children.forEach((l3, k) => {
+        const offAlong3 = LAYOUT.l3OffsetX;
+        const offPerp3 = -totalL3Height / 2 + k * LAYOUT.l3GapY;
+
+        const l3x = l2x + dirX * offAlong3 + perpX * offPerp3;
+        const l3y = l2y + dirY * offAlong3 + perpY * offPerp3;
+
+        const l3Node = {
+          ...l3,
+          x: l3x,
+          y: l3y,
+          w: LAYOUT.nodeWidths.l3,
+          parentId: l2.id
+        };
+        nodes.push(l3Node);
+        connections.push({ from: l2.id, to: l3.id, branch: child.branch });
+      });
+    });
+  });
+}
+
+const BRANCH_COLORS = {
+  funnel1: '#5A7A60',
+  funnel2: '#C17744',
+  intensive: '#7B68AE',
+  daily: '#A08860',
+  method: '#C0392B',
+  roles: '#3498DB',
+  tools: '#1ABC9C'
+};
+
+function render() {
+  layoutTree();
+  const canvas = document.getElementById('canvas');
+  const svg = document.getElementById('connectionsSvg');
+
+  // Clear old nodes but keep SVG
+  canvas.querySelectorAll('.node').forEach(n => n.remove());
+  svg.innerHTML = '';
+
+  // Determine bounds
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  nodes.forEach(n => {
+    if (n.x - 150 < minX) minX = n.x - 150;
+    if (n.y - 40 < minY) minY = n.y - 40;
+    if (n.x + 300 > maxX) maxX = n.x + 300;
+    if (n.y + 40 > maxY) maxY = n.y + 40;
+  });
+
+  const pad = 200;
+  svg.setAttribute('width', maxX - minX + pad * 2);
+  svg.setAttribute('height', maxY - minY + pad * 2);
+  svg.style.left = (minX - pad) + 'px';
+  svg.style.top = (minY - pad) + 'px';
+
+  // Draw connections
+  connections.forEach(conn => {
+    const fromNode = nodes.find(n => n.id === conn.from);
+    const toNode = nodes.find(n => n.id === conn.to);
+    if (!fromNode || !toNode) return;
+
+    const x1 = fromNode.x - (minX - pad);
+    const y1 = fromNode.y - (minY - pad);
+    const x2 = toNode.x - (minX - pad);
+    const y2 = toNode.y - (minY - pad);
+
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const d = `M ${x1} ${y1} Q ${mx} ${y1}, ${mx} ${my} T ${x2} ${y2}`;
+    path.setAttribute('d', d);
+    path.setAttribute('class', 'connection');
+    path.setAttribute('stroke', BRANCH_COLORS[conn.branch] || '#D4C4A8');
+    svg.appendChild(path);
+  });
+
+  // Draw nodes
+  nodes.forEach((n, i) => {
+    const el = document.createElement('div');
+    el.className = `node node-${n.level}` + (n.branch ? ` branch-${n.branch}` : '');
+    if (collapsedSet.has(n.id)) el.classList.add('collapsed');
+    el.style.left = (n.x - n.w / 2) + 'px';
+    el.style.top = (n.y - 24) + 'px';
+    el.style.width = n.w + 'px';
+    el.style.animationDelay = (i * 30) + 'ms';
+
+    const hasChildren = !!(n.children && n.children.length);
+
+    let inner = '<div class="node-content">';
+
+    if (n.level === 'root') {
+      inner += `<div class="node-title">${n.title}</div>`;
+      inner += `<div class="node-subtitle">${n.subtitle}</div>`;
+    } else {
+      if (n.badge) inner += `<div class="node-badge">${n.badge}</div>`;
+      inner += '<div class="node-title-row">';
+      if (n.stepNum !== undefined) {
+        inner += `<span class="step-num step-${n.stepColor || 'sage'}">${n.stepNum}</span>`;
+      }
+      inner += `<span class="node-title">${n.title}</span>`;
+      inner += '</div>';
+    }
+
+    if (hasChildren) {
+      const icon = collapsedSet.has(n.id) ? '+' : '−';
+      inner += `<div class="toggle-icon">${icon}</div>`;
+    }
+
+    inner += '</div>';
+    el.innerHTML = inner;
+
+    // Click to toggle
+    if (hasChildren) {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (collapsedSet.has(n.id)) {
+          collapsedSet.delete(n.id);
+        } else {
+          collapsedSet.add(n.id);
+        }
+        render();
+      });
+    }
+
+    // Tooltip
+    if (n.tip) {
+      el.addEventListener('mouseenter', (e) => {
+        const tooltip = document.getElementById('tooltip');
+        tooltip.textContent = n.tip;
+        tooltip.style.left = (e.clientX + 12) + 'px';
+        tooltip.style.top = (e.clientY - 40) + 'px';
+        tooltip.classList.add('visible');
+      });
+      el.addEventListener('mouseleave', () => {
+        document.getElementById('tooltip').classList.remove('visible');
+      });
+    }
+
+    canvas.appendChild(el);
+  });
+}
+
+// Pan & Zoom
+let scale = 0.45;
+let panX = 0;
+let panY = 0;
+let isPanning = false;
+let startPanX, startPanY;
+
+const wrapper = document.getElementById('canvasWrapper');
+const canvasEl = document.getElementById('canvas');
+
+function applyTransform() {
+  canvasEl.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+  document.getElementById('zoomLevel').textContent = Math.round(scale * 100) + '%';
+}
+
+function resetView() {
+  scale = 0.45;
+  const ww = wrapper.clientWidth;
+  const wh = wrapper.clientHeight;
+  panX = ww / 2 - LAYOUT.rootX * scale;
+  panY = wh / 2 - LAYOUT.rootY * scale;
+  applyTransform();
+}
+
+function zoomIn() {
+  scale = Math.min(scale * 1.2, 2);
+  applyTransform();
+}
+
+function zoomOut() {
+  scale = Math.max(scale / 1.2, 0.15);
+  applyTransform();
+}
+
+wrapper.addEventListener('mousedown', (e) => {
+  isPanning = true;
+  startPanX = e.clientX - panX;
+  startPanY = e.clientY - panY;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!isPanning) return;
+  panX = e.clientX - startPanX;
+  panY = e.clientY - startPanY;
+  applyTransform();
+});
+
+window.addEventListener('mouseup', () => { isPanning = false; });
+
+wrapper.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const rect = wrapper.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  const prevScale = scale;
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  scale = Math.min(Math.max(scale * delta, 0.15), 2);
+
+  // Zoom toward cursor
+  panX = mouseX - (mouseX - panX) * (scale / prevScale);
+  panY = mouseY - (mouseY - panY) * (scale / prevScale);
+
+  applyTransform();
+}, { passive: false });
+
+// Touch support
+let lastTouchDist = 0;
+let lastTouchX = 0;
+let lastTouchY = 0;
+
+wrapper.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 1) {
+    isPanning = true;
+    startPanX = e.touches[0].clientX - panX;
+    startPanY = e.touches[0].clientY - panY;
+  } else if (e.touches.length === 2) {
+    isPanning = false;
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastTouchDist = Math.sqrt(dx * dx + dy * dy);
+    lastTouchX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    lastTouchY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+  }
+}, { passive: false });
+
+wrapper.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (e.touches.length === 1 && isPanning) {
+    panX = e.touches[0].clientX - startPanX;
+    panY = e.touches[0].clientY - startPanY;
+    applyTransform();
+  } else if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const delta = dist / lastTouchDist;
+
+    const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+    const prevScale = scale;
+    scale = Math.min(Math.max(scale * delta, 0.15), 2);
+
+    const rect = wrapper.getBoundingClientRect();
+    const px = mx - rect.left;
+    const py = my - rect.top;
+    panX = px - (px - panX) * (scale / prevScale);
+    panY = py - (py - panY) * (scale / prevScale);
+
+    lastTouchDist = dist;
+    applyTransform();
+  }
+}, { passive: false });
+
+wrapper.addEventListener('touchend', () => { isPanning = false; });
+
+function expandAll() {
+  collapsedSet.clear();
+  render();
+}
+
+function collapseAll() {
+  function addCollapsible(node) {
+    if (node.children && node.children.length) {
+      if (node.level !== 'root') collapsedSet.add(node.id);
+      node.children.forEach(addCollapsible);
+    }
+  }
+  addCollapsible(TREE);
+  render();
+}
+
+// Init
+render();
+resetView();
+</script>
+</body>
+</html>
